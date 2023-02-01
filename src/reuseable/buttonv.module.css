@@ -1,0 +1,23 @@
+.shell {
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+.label {
+    font-size: 20px;
+}
+
+
+.button {    
+    /* padding: 1px; */
+    display: flex;
+    cursor: pointer;
+    gap:4px;
+    width: var(--w);
+    height: 40px;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
+}

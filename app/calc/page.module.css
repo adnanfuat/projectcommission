@@ -1,0 +1,26 @@
+.section {
+    width: 100%;
+    background-color: rgb(155, 155, 155);
+    padding: 30px;
+    display: flex;   
+    flex-direction: column; 
+    gap: 2px;  
+    
+}
+
+.form {
+    display: flex;    
+    flex-direction: column;
+    gap:20px;
+}
+
+.resulttable {
+    background-color: bisque;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr ;
+}
+
+.inputsections {
+    display: flex;    
+}

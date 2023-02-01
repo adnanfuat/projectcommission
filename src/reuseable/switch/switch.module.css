@@ -1,0 +1,15 @@
+.shell {    
+    background-color: transparent;
+}
+
+
+.switch {    
+    display: flex;
+    cursor: pointer;
+
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
+    justify-content: center;
+    align-items: center;
+}

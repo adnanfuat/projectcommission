@@ -1,0 +1,36 @@
+.shell {
+  background-color: beige;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "menu contents"    
+    "footer footer";
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: auto 1fr auto ;
+  min-height: 98vh;    
+  background-color: black;
+  gap:20px;  
+
+}
+
+
+
+.header {
+  grid-area: header;
+  background-color: rebeccapurple;
+}
+
+.menu {
+  grid-area: menu;
+  background-color: blueviolet;
+}
+
+.contents {
+  grid-area: contents;
+  background-color: rgb(206, 206, 206);
+}
+
+.footer {
+  grid-area: footer;
+  background-color: darkblue;
+}
