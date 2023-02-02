@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     
-            <div className={s.shell}>dddd
+            <div className={s.shell}>
                   
                   <div className={s.header}>Hesaplama işlemleri burada yürütülecek...</div>
                   <div className={s.menu}>Menü</div>

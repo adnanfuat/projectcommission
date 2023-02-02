@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Taşıyıcı sistem yapısı veya analiz yöntemine göre",
+    "sub": [
+      {
+        "title": "Kagir / Yığma",
+        "point": 1
+      },
+      {
+        "title": "Betonarme",
+        "point": 2
+      }
+    ]
+  },
+  {
+    "title": "Temal sistemine göre",
+    "sub": [
+      {
+        "title": "Yüzeysel",
+        "point": 1
+      },
+      {
+        "title": "Derin",
+        "point": 1
+      }      
+    ]
+  }  
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "title": "1. Sınıf Yapılar",
+    "sub": [
+      {
+        "title": "A Grubu Yapılar",
+        "description": "Kagir veya betonarme ihata eder.",
+        "price": 650
+      },
+      {
+        "title": "B Grubu Yapılar",
+        "description": "Cam veya sert plastik örtülü yapılar.",
+        "price": 990
+      }      
+    ]
+  },
+  {
+    "title": "2. Sınıf Yapılar",
+    "sub": [
+      {
+        "title": "C Grubu Yapılar",
+        "description": "Hangar yapıları",
+        "price": 2865
+      }
+    ]
+  } 
+]
