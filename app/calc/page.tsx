@@ -6,6 +6,7 @@ import s from './page.module.css';
 import useSound from 'use-sound';
 import {yapisinifiFunc} from "@/src/json/yapisinifi"
 import {yapisinifikatsayiFunc} from "@/src/json/yapisinifikatsayi"
+import {projeUcretOraniFunc} from "@/src/json/projeucretorani"
 
 
 
@@ -18,10 +19,10 @@ export default function Home() {
     initialValues: {      
       toplaminsaatalani:10,
       projetekrari:3,
-      yapisinifi:`{"price":990,"code":"1B"}`,
+      yapisinifi:`{"price":650,"code":"1A", "category":1}`,
       yapisinifikatsayi:`{"point":2,"code":"be"}`,
       tasiyicisistem:undefined,
-      hizmetler:0.6,
+      hizmetler:1,
     },
     onSubmit: (values, {setSubmitting}) => {
       // console.log('valuessssss', values)
@@ -45,17 +46,21 @@ export default function Home() {
 let imho=0.75
 let bolge=0.7
 
+let puo = projeUcretOraniFunc({m2:toplaminsaatalani, sinif:JSON.parse(yapisinifi)?.category});
 
-let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point})*imho*projeYenilemeKatsayisi({input:projetekrari})*hizmetler*bolge
+
+let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point})*puo*imho*projeYenilemeKatsayisi({input:projetekrari})*hizmetler*bolge
     sum = parseFloat( sum.toFixed(2));
 
     const [play ] = useSound("/sounds/beep.mp3"); // hatanın çözümü    
+
+//     console.log("asdasdsasdasad", JSON.parse(yapisinifi)?.category);
 
   return (    
             <form  onSubmit={formik.handleSubmit}  className={`${s.form} ${inter.className}`}>
 
                   <div className={s.inputsections}>
-
+                                          
                         <div className={s.sectionwr}>
                                                       <div className={s.section}>              
                                                             <span>Toplam inşaat alanı</span>
@@ -73,7 +78,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSO
                                       
                                       {
                                           yapisinifi_options?.map(item=>{
-                                                      return <option value={JSON.stringify(item?.value)}>{item?.label} - {item?.value?.price} TL </option>                                      
+                                                      return <option value={JSON.stringify(item?.value)}>{item?.label} - {item?.value?.price} TL/m2 </option>                                      
                                           })
                                       }
 
@@ -97,59 +102,88 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSO
                             <div className={s.section}>              
                                   <span>Hizmetler</span>
                                   <select name='hizmetler'  value={hizmetler} onChange={formik.handleChange}>
-                                      <option value={0.1}>Proje hizmeti</option>
-                                      <option value={0.6}>B. proje + Fenni mesuliyet</option>                          
+                                      <option value={1}>Proje hizmeti</option>
+                                      <option value={0.1}>Öneri raporu</option>
+                                      <option value={0.15}>Ön proje</option>
+                                      <option value={0.15}>Metraj</option>
+                                      <option value={0.6}>Fenni mesuliyet</option>
+                                      <option value={0.6}>Statik uygulama projesi ve detaylari</option>                          
                                   </select>
                             </div>                                        
                             
                   </div>
 
-                <div className={s.resulttable}>
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>Proje ücreti</h3>
-                                            <h2>{sum}</h2>
-                                    </div>
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>Yapı alanı</h3>
-                                            <h2>{toplaminsaatalani}</h2>
-                                    </div>
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>Birim maliyet</h3>
-                                            {/* <div>{ yapisinifi ? JSON.parse(yapisinifi)?.price : 0   }</div> */}
-                                            <h2>{ JSON.parse(yapisinifi)?.price }</h2>
-                                    </div>
-
-                                    <div className={s.block}>                                            
-                                            <h3>Y. S. katsayı puanı</h3>
-                                            <h2>{ sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point}) }</h2>
-                                    </div>     
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>İ.M. hizmet oranı</h3>
-                                            <h2>{ imho }</h2>
-                                    </div>  
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>P. yenileme katsayısı</h3>
-                                            <h2>{ projeYenilemeKatsayisi({input:projetekrari}) }</h2>
-                                    </div>                                                                        
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>Hizmet bölümleri</h3>
-                                            <h2>{ hizmetler }</h2>
-                                    </div>          
-
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
-                                            <h3>Bölge katsayısı</h3>
-                                            <h2>{ bolge }</h2>
-                                    </div>                                                                                                                                        
 
 
+            <div className={s.resultwr}>
+                                      
+                        
+                              <div className={s.mainresult} onMouseOver={()=>play()}>                                            
+                                    <h1>PROJE ÜCRETİ: </h1>
+                                    <h1>{sum} TL</h1>
+                              </div>
+                        
 
-                </div>
+                              <div className={s.resulttable}>
 
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>PÜÖ</h3>
+                                                            <h2>{ puo }</h2>
+                                                      </div>
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Yapı alanı</h3>
+                                                            <h2>{toplaminsaatalani}</h2>
+                                                      </div>
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Birim maliyet</h3>
+                                                            {/* <div>{ yapisinifi ? JSON.parse(yapisinifi)?.price : 0   }</div> */}
+                                                            <h2>{ JSON.parse(yapisinifi)?.price }</h2>
+                                                      </div>
+
+                                                      <div className={s.block}>                                            
+                                                            <h3>Y. S. katsayı puanı</h3>
+                                                            <h2>{ sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point}) }</h2>
+                                                      </div>     
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>İ.M. hizmet oranı</h3>
+                                                            <h2>{ imho }</h2>
+                                                      </div>  
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>P. yenileme katsayısı</h3>
+                                                            <h2>{ projeYenilemeKatsayisi({input:projetekrari}) }</h2>
+                                                      </div>                                                                        
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Hizmet bölümleri</h3>
+                                                            <h2>{ hizmetler }</h2>
+                                                      </div>          
+
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Bölge katsayısı</h3>
+                                                            <h2>{ bolge }</h2>
+                                                      </div>                                                                                                                                        
+
+
+
+                              </div>
+            </div>
+
+
+                <div className={s.announcementswr}>                                                                  
+                                            
+                                          <div className={s.agtitle}>DUYURULAR</div>
+
+                        <div className={s.announcements}>                                                                                          
+                                          {[0,1].map(item=><div className={s.announcement}>                                                                          
+                                                      <div className={s.atitle}>Yeni yönetmelik yayınlandı....</div>
+                                                      <div className={s.acontent}>Burada yer alan içerik sadece siz ziyaretçilerimize mesleğimizle ilgili tüm kanunlara toplu olarak erişim sağlamak amacıyla derlenmiştir. Kanunlar bölümü güncel tutulmaya çalışılmaktadır. Ancak hukuki sorunların önemini dikkate alarak lütfen ayrıntılı ve güncel kanunlar için mevzuat.basbakanlik.gov.tr, www.yargitay.gov.tr veya www.danistay.gov.tr adreslerini ziyaret ediniz.</div>
+                                          </div>    )                    }
+                        </div>
+                 </div>
             </form>
           )
 }
