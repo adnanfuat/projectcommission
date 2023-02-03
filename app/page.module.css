@@ -1,0 +1,45 @@
+
+  .bg {
+    background-image: url("/images/bg.jpg");
+    /* Full height */
+    height: 100vh;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .link {
+    text-decoration: none;
+    color: black;
+    font-size: 8rem;
+    margin-bottom: 180px;
+    text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+    transition: all 0.5s;
+  }
+
+  .link:hover {
+    color: rgb(0, 132, 255);
+    color: #053559;
+    transform: scale(1.1);
+  }
+
+  .logo {
+    background-color: antiquewhite;
+    border-radius: 200px;
+    max-width: 190px;
+    box-shadow: -3px -20px 46px -3px rgba(0,0,0,0.52);
+    -webkit-box-shadow: -3px -20px 46px -3px rgba(0,0,0,0.52);
+    -moz-box-shadow: -3px -20px 46px -3px rgba(0,0,0,0.52);
+    transition: all 0.5s;
+  }
+
+  .logo:hover {
+    border:8px solid rgb(0, 0, 0);
+    transform: 0.6s;
+    transform: scale(1.4);
+  }

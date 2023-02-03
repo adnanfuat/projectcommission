@@ -1,36 +1,42 @@
 .shell {
   background-color: beige;
   display: grid;
-  grid-template-areas:
-    "header header"
-    "menu contents"    
-    "footer footer";
+  grid-template-areas:    
+    "menu contents";        
   grid-template-columns: max-content 1fr;
-  grid-template-rows: auto 1fr auto ;
+  
   min-height: 98vh;    
+  
   background-color: black;
-  gap:20px;  
+  
 
 }
 
 
 
-.header {
-  grid-area: header;
-  background-image: linear-gradient( 132.6deg,  rgb(211, 211, 211) 23.3%, rgb(102, 102, 102) 84.7% );
-}
+
 
 .menu {
   grid-area: menu;
-  background-image: linear-gradient( 132.6deg,  rgb(211, 211, 211) 23.3%, rgb(102, 102, 102) 84.7% );
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  background-color: black;
+  
+  
+  
+  /* background-image: linear-gradient( 132.6deg,  rgb(211, 211, 211) 23.3%, rgb(102, 102, 102) 84.7% ); */
 }
 
 .contents {
   grid-area: contents;
   background-color: rgb(206, 206, 206);
+  
 }
 
-.footer {
-  grid-area: footer;
-  /* background-color: darkblue; */
+
+.logo {
+  border-radius: 30px;
+  width: 80px;
+  height: 80px;
 }

@@ -4,14 +4,21 @@
     padding: 30px;
     display: flex;   
     flex-direction: column; 
-    gap: 2px;  
-    
+    gap: 10px;      
+}
+.section span {
+    font-weight: bold;
+}
+
+.sectionwr {    
+    display: flex;    
 }
 
 .form {
     display: grid;        
     grid-template-columns: 1fr 5fr;
-    gap:20px;
+    /* gap:20px; */
+    height: 100%;
     /* background-color: blueviolet; */
 }
 
@@ -25,7 +32,8 @@
 
 .inputsections {
     display: flex;   
-    flex-direction: column; 
+    flex-direction: column;     
+    background-image: linear-gradient( 158deg,  #ffae40 13.3%, #c37100 94.7% );
 }
 
 .block {
@@ -53,5 +61,7 @@
 
 .block h2 {
     /* text-decoration: underline; */
-    font-size: 3rem
+    font-size: 2.2rem;
+    transition: all 6s;
+
 }
