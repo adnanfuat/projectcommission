@@ -5,7 +5,7 @@ import { Inter } from '@next/font/google'
 import s from './page.module.css';
 import useSound from 'use-sound';
 import {yapisinifiFunc} from "@/src/json/yapisinifi"
-import { tasiyicisistemFunc} from "@/src/json/tasiyicisistem"
+import {yapisinifikatsayiFunc} from "@/src/json/yapisinifikatsayi"
 import {projeUcretOraniFunc} from "@/src/json/projeucretorani"
 
 
@@ -20,7 +20,9 @@ export default function Home() {
       toplaminsaatalani:10,
       projetekrari:3,
       yapisinifi:`{"price":650,"code":"1A", "category":1}`,
-       tasiyicisistem:`{"point":1,"code":"be"}`      
+      yapisinifikatsayi:`{"point":2,"code":"be"}`,
+      tasiyicisistem:undefined,
+      hizmetler:1,
     },
     onSubmit: (values, {setSubmitting}) => {
       // console.log('valuessssss', values)
@@ -31,24 +33,23 @@ export default function Home() {
     },
   });   
 
- let {toplaminsaatalani,projetekrari ,yapisinifi,  tasiyicisistem} = formik?.values ?? {}
+ let {toplaminsaatalani,projetekrari ,yapisinifi, yapisinifikatsayi, tasiyicisistem, hizmetler} = formik?.values ?? {}
 
  //yapisinifi=yapisinifi ?  JSON.parse(yapisinifi) : yapisinifi; // Selectlerde valueleri stringfy edilmiş obje olarak tutuyoruz...
 
- let puo = projeUcretOraniFunc({m2:toplaminsaatalani, sinif:JSON.parse(yapisinifi)?.category});
  
  let yapisinifi_options=yapisinifiFunc()
- let  tasiyicisistem_options= tasiyicisistemFunc()
+ let yapisinifikatsayi_options=yapisinifikatsayiFunc()
  // console.log("sasasa", yapisinifi, typeof(yapisinifi));
- //  tasiyicisistem
+ // yapisinifikatsayi
 
-// let imho=0.75
-// let bolge=0.7
-let katsayi = 0.525
+let imho=0.75
+let bolge=0.7
+
+let puo = projeUcretOraniFunc({m2:toplaminsaatalani, sinif:JSON.parse(yapisinifi)?.category});
 
 
-
-let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisistem)?.point*projeYenilemeKatsayisi({input:projetekrari})*katsayi*puo
+let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point})*puo*imho*projeYenilemeKatsayisi({input:projetekrari})*hizmetler*bolge
     sum = parseFloat( sum.toFixed(2));
 
     const [play ] = useSound("/sounds/beep.mp3"); // hatanın çözümü    
@@ -56,7 +57,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
 //     console.log("asdasdsasdasad", JSON.parse(yapisinifi)?.category);
 
   return (    
-            <form  onSubmit={formik.handleSubmit}  className={`${s.form} ${inter.className}`}> 
+            <form  onSubmit={formik.handleSubmit}  className={`${s.form} ${inter.className}`}>
 
                   <div className={s.inputsections}>
                                           
@@ -85,12 +86,12 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                             </div>        
 
                             <div className={s.section}>              
-                                  <span>Taşıyıcı sistem</span>
-                                  <select name='tasiyicisistem'  value={tasiyicisistem} onChange={formik.handleChange}>
+                                  <span>Yapı sınıfı katsayı puanları</span>
+                                  <select name='yapisinifikatsayi'  value={yapisinifikatsayi} onChange={formik.handleChange}>
                                       
                                       {
-                                           tasiyicisistem_options?.map(item=>{
-                                                      return <option value={JSON.stringify(item?.value)}>{`${item?.label} - ${item?.value?.point}`}</option>                                      
+                                          yapisinifikatsayi_options?.map(item=>{
+                                                      return <option value={JSON.stringify(item?.value)}>{item?.label}</option>                                      
                                           })
                                       }
 
@@ -98,7 +99,17 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                             </div>           
 
 
-                                                              
+                            <div className={s.section}>              
+                                  <span>Hizmetler</span>
+                                  <select name='hizmetler'  value={hizmetler} onChange={formik.handleChange}>
+                                      <option value={1}>Proje hizmeti</option>
+                                      <option value={0.1}>Öneri raporu</option>
+                                      <option value={0.15}>Ön proje</option>
+                                      <option value={0.15}>Metraj</option>
+                                      <option value={0.6}>Fenni mesuliyet</option>
+                                      <option value={0.6}>Statik uygulama projesi ve detaylari</option>                          
+                                  </select>
+                            </div>                                        
                             
                   </div>
 
@@ -112,11 +123,13 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                                     <h1>{sum} TL</h1>
                               </div>
                         
-                              PUO: {puo}
 
                               <div className={s.resulttable}>
 
-                                                      
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>PÜÖ</h3>
+                                                            <h2>{ puo }</h2>
+                                                      </div>
 
                                                       <div className={s.block} onMouseOver={()=>play()}>                                            
                                                             <h3>Yapı alanı</h3>
@@ -131,19 +144,28 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
 
                                                       <div className={s.block}>                                            
                                                             <h3>Y. S. katsayı puanı</h3>
-                                                            <h2> {JSON.parse(tasiyicisistem)?.point} </h2>
+                                                            <h2>{ sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point}) }</h2>
                                                       </div>     
 
-                                                      
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>İ.M. hizmet oranı</h3>
+                                                            <h2>{ imho }</h2>
+                                                      </div>  
 
                                                       <div className={s.block} onMouseOver={()=>play()}>                                            
                                                             <h3>P. yenileme katsayısı</h3>
                                                             <h2>{ projeYenilemeKatsayisi({input:projetekrari}) }</h2>
                                                       </div>                                                                        
 
-                                                      
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Hizmet bölümleri</h3>
+                                                            <h2>{ hizmetler }</h2>
+                                                      </div>          
 
-                                                      
+                                                      <div className={s.block} onMouseOver={()=>play()}>                                            
+                                                            <h3>Bölge katsayısı</h3>
+                                                            <h2>{ bolge }</h2>
+                                                      </div>                                                                                                                                        
 
 
 
@@ -232,20 +254,3 @@ const sonYSKPuani = ({input}) => {
       return ( result )
       
 }
-
-
-
-
-
-
-// <div className={s.section}>              
-//                                   <span>Hizmetler</span>
-//                                   <select name='hizmetler'  value={hizmetler} onChange={formik.handleChange}>
-//                                       <option value={1}>Proje hizmeti</option>
-//                                       <option value={0.1}>Öneri raporu</option>
-//                                       <option value={0.15}>Ön proje</option>
-//                                       <option value={0.15}>Metraj</option>
-//                                       <option value={0.6}>Fenni mesuliyet</option>
-//                                       <option value={0.6}>Statik uygulama projesi ve detaylari</option>                          
-//                                   </select>
-//                             </div>      
