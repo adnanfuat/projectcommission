@@ -1,11 +1,11 @@
 .section {
     width: 100%;
-    /* background-color: rgb(155, 155, 155); */
     padding: 30px;
     display: flex;   
     flex-direction: column; 
     gap: 10px;      
 }
+
 .section span {
     font-weight: bold;
 }
@@ -16,11 +16,25 @@
 
 .form {
     display: grid;        
-    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-columns: 3fr 3fr 4fr;
     /* gap:20px; */
     height: 100%;
     /* background-color: blueviolet; */
 }
+
+
+@media only screen and (max-width: 1200px) {
+    .form {
+        display: grid;        
+        grid-template-columns: 1fr;
+        /* gap:20px; */
+        height: 100%;
+        /* background-color: blueviolet; */
+    }
+  }
+
+
+
 
 .mainresult {
     background-image: linear-gradient( 0deg, rgb(185 185 185) 23.3%, rgb(255 255 255) 84.7% );
@@ -36,22 +50,28 @@
     background-image: linear-gradient( 132.6deg,  rgb(211, 211, 211) 23.3%, rgb(102, 102, 102) 84.7% );
     padding: 30px;
     display: grid;
-    grid-template-columns: 1fr 1fr  ;
+    grid-template-columns: 1fr;
     gap:26px;
-    height: 100%;
-    
+    height: 100%;    
 }
 
 .resultwr {
     display: flex;
     flex-direction: column;
-
+    background-color: #dbdbdb;
+    padding: 20px;
 }
 
 .inputsections {
     display: flex;   
     flex-direction: column;     
     background-image: linear-gradient(158deg,#8ee5ff 13.3%,#005c9d 94.7%)
+}
+
+.inputsections2 {
+    display: flex;   
+    flex-direction: column;     
+    background-color: #ffd19b;
 }
 
 .block {
@@ -66,23 +86,20 @@
     transition: all 0.5s;
 }
 
-.block:hover {
-    cursor: pointer;
-    transform: scale(1.1);
 
-}
 
-.block h3 {
-    /* text-decoration: underline; */
+.block h3 {    
     margin-bottom: 10px;
 }
 
-.block h2 {
-    /* text-decoration: underline; */
+.block h2 {    
     font-size: 1.4rem;
     transition: all 6s;
-
 }
+
+
+
+
 
 
 .announcementswr{
@@ -128,3 +145,142 @@
    background-color: #dbdbdb;
 }
 
+
+
+
+
+.teklifwr{    
+    display: flex;
+    flex-direction: column;
+    border:1px solid black;    
+    gap:30px;
+    margin:10px;
+    width: 80%;
+    padding: 40px;
+    
+}
+
+
+.teklifmainwr{    
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    
+
+}
+
+
+.teklifgrid{    
+    display: grid;
+    font-size: 1.3rem;  
+    font-weight: bold;
+    grid-template-areas: 
+            "yapisahibi yapisahibi "
+            "ilce mahalle "
+            "ada parsel"            
+            "toplaminsaatalani toplaminsaatalani"            
+            "yapisinifi projetekrari"
+            "tasiyicisistem tasiyicisistem"
+            "projeucreti toplamucret"            
+            ;
+    gap:20px;
+
+    
+}
+
+.teklifgrid div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 16px;
+    border-radius:10px;
+    border:1px solid black;
+}
+
+.teklifgrid span {
+    text-decoration: underline;
+    font-size: 1rem;
+    color: rgb(44, 44, 44);
+}
+
+
+.yapisahibi {
+    grid-area: yapisahibi;
+}
+
+
+.ilce {
+    grid-area: ilce;
+}
+
+.mahalle {
+    grid-area: mahalle;
+}
+
+.ada {
+    grid-area: ada;
+}
+
+.parsel {
+    grid-area: parsel;
+}
+
+.toplaminsaatalani {
+    grid-area: toplaminsaatalani;
+}
+
+
+.projetekrari {
+    grid-area: projetekrari;
+}
+
+.yapisinifi {
+    grid-area: yapisinifi;
+}
+
+
+.tasiyicisistem {
+    grid-area: tasiyicisistem;
+}
+
+
+.projeucreti {
+    grid-area: projeucreti;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #005c9d;
+}
+
+
+.toplamucret {
+    grid-area: toplamucret;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #005c9d;
+}
+
+
+
+.tekliftitle{
+
+    font-size: 1.4rem;
+    font-weight: bold;
+    border: 1px solid black;
+    color: black;
+    background-color: #dddddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;    
+}
+
+
+.prinbutton {
+    display: flex;
+    background-color: #005c9d;
+    color: white;
+}
