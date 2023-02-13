@@ -105,17 +105,17 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSO
                   </div>
 
                 <div className={s.resulttable}>
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>Proje ücreti</h3>
                                             <h2>{sum}</h2>
                                     </div>
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>Yapı alanı</h3>
                                             <h2>{toplaminsaatalani}</h2>
                                     </div>
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>Birim maliyet</h3>
                                             {/* <div>{ yapisinifi ? JSON.parse(yapisinifi)?.price : 0   }</div> */}
                                             <h2>{ JSON.parse(yapisinifi)?.price }</h2>
@@ -126,22 +126,22 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*sonYSKPuani({input:JSO
                                             <h2>{ sonYSKPuani({input:JSON.parse(yapisinifikatsayi)?.point}) }</h2>
                                     </div>     
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>İ.M. hizmet oranı</h3>
                                             <h2>{ imho }</h2>
                                     </div>  
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>P. yenileme katsayısı</h3>
                                             <h2>{ projeYenilemeKatsayisi({input:projetekrari}) }</h2>
                                     </div>                                                                        
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>Hizmet bölümleri</h3>
                                             <h2>{ hizmetler }</h2>
                                     </div>          
 
-                                    <div className={s.block} onMouseOver={()=>play()}>                                            
+                                    <div className={s.block} >                                            
                                             <h3>Bölge katsayısı</h3>
                                             <h2>{ bolge }</h2>
                                     </div>                                                                                                                                        

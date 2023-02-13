@@ -40,3 +40,16 @@
   width: 80px;
   height: 80px;
 }
+
+
+@media only screen and (max-width: 900px) {
+  .menu {
+    display: none;
+  }
+  
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-areas:    
+    "contents";
+  }
+}

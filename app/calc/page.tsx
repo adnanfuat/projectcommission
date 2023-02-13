@@ -115,7 +115,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                             </div>          
 
 
-                              <div className={s.section} onMouseOver={()=>play()}>                                            
+                              <div className={s.section} >                                            
                                     <h2>PROJE ÜCRETİ: </h2>
                                     <h3>{sum_locale} TL + KDV = {sum_kdv_locale}TL</h3>                                    
                                     <div>Minimum Oran (%25): {sum_kdv_locale_25}   TL</div>
