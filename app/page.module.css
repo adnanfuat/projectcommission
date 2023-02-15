@@ -1,11 +1,10 @@
-.gridwr {
-  
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 40px;
-  border-radius: 8px;
-}
+.gridwr {  
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+          padding: 40px;
+          border-radius: 8px;
+        }
 
   .bg {
     background-image: url("/images/bg.jpg");  
