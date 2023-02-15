@@ -12,7 +12,6 @@ import { tasiyicisistemFunc} from "@/src/json/tasiyicisistem"
 import {projeUcretOraniFunc} from "@/src/json/projeucretorani"
 import Link from "next/link";
 
-
 const inter = Inter({ subsets: ['latin', "latin-ext"] })
 
 export default function Home() {

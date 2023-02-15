@@ -8,10 +8,8 @@
 }
 
   .bg {
-    background-image: url("/images/bg.jpg");
-    /* Full height */
-    height: 100vh;
-    /* Center and scale the image nicely */
+    background-image: url("/images/bg.jpg");  
+    height: 100vh;  
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -119,7 +117,6 @@
   }
 
 
-
   .mainlogowr {
     background-color: #053559;
     background-color: white;
@@ -139,3 +136,16 @@
   .button:hover {
     background-color: antiquewhite;
   }
+
+
+  
+@media only screen and (max-width: 1200px) {
+  .gridwr {
+  
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 20px;
+    padding: 40px;
+    border-radius: 8px;
+  }
+}
