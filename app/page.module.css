@@ -1,3 +1,11 @@
+.gridwr {
+  
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 40px;
+  border-radius: 8px;
+}
 
   .bg {
     background-image: url("/images/bg.jpg");
@@ -7,10 +15,50 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
+    grid-template-columns: max-content max-content;
+    display: grid;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+  }
+
+  .rightwr {
+    background-color: antiquewhite;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .loginwr {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap:10px;
+    padding: 4px;
+  }
+
+  .inputwr {
+    
+    display: flex;
+    flex-direction: column;    
+    gap:5px
+  }
+
+  
+
+  .inputwr span {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+  }
+
+  .inputwr input {
+    padding: 8px;
+  }
+
+  .inputwr textarea {
+
+      background-color: #dddddd;
+      padding: 10px;
+      border-radius: 8px;
   }
 
   .link {
@@ -41,5 +89,53 @@
   .logo:hover {
     border:8px solid rgb(0, 0, 0);
     transform: 0.6s;
-    transform: scale(1.4);
+    transform: scale(1.01);
+  }
+
+  .logos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap:20px;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+    
+    .logos div {
+      justify-content: center;
+      align-items: center;             
+  }
+
+
+  .logowr {
+    background-color: rgb(255, 255, 255);    
+    max-width: 450px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+
+
+  .mainlogowr {
+    background-color: #053559;
+    background-color: white;
+    border-radius: 8px;
+    
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+
+  .button {
+    padding: 10px;
+    border-radius: 8px;    
+  }
+
+  .button:hover {
+    background-color: antiquewhite;
   }

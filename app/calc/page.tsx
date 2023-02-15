@@ -1,5 +1,6 @@
 
 "use client"
+import { BiDownload } from "react-icons/bi";
 import ReactToPrint from 'react-to-print';
 import React, { useRef } from 'react';
 import { useFormik } from 'formik';
@@ -9,7 +10,7 @@ import useSound from 'use-sound';
 import {yapisinifiFunc} from "@/src/json/yapisinifi"
 import { tasiyicisistemFunc} from "@/src/json/tasiyicisistem"
 import {projeUcretOraniFunc} from "@/src/json/projeucretorani"
-
+import Link from "next/link";
 
 
 const inter = Inter({ subsets: ['latin', "latin-ext"] })
@@ -21,7 +22,7 @@ export default function Home() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {      
-      toplaminsaatalani:1000,
+      toplaminsaatalani:0,
       projetekrari:1,
       yapisinifi:`{"price":650,"code":"1A", "category":1}`,
        tasiyicisistem:`{"point":1, "title":"Betonarme"}`,
@@ -114,16 +115,12 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                                   </select>
                             </div>          
 
-
-                              <div className={s.section} >                                            
+                              <div className={s.section} style={{color:"white", fontSize:"1.2rem"}}>                                            
                                     <h2>PROJE ÜCRETİ: </h2>
                                     <h3>{sum_locale} TL + KDV = {sum_kdv_locale}TL</h3>                                    
                                     <div>Minimum Oran (%25): {sum_kdv_locale_25}   TL</div>
                                     <div>Max Oran (%75): {sum_kdv_locale_75} TL</div>
                               </div> 
-
-
-                                                              
                             
                   </div>
 
@@ -160,6 +157,10 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                                                                         <span>Parsel</span>
                                                                         <input name='parsel'  value={parsel} onChange={formik.handleChange}/>
                                                             </div>
+
+                                                            <div className={s.section}>              
+                                                                        <span><BiDownload size={20}/> <Link href={"/files/proje_hizmet_sozlesmesi.docx"} style={{fontSize:25}}>Örnek Proje Hizmet Sözleşmesi</Link></span>                                                                        
+                                                            </div>
                                                                                                                                                                                                                                      
 
                                                       
@@ -194,10 +195,10 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                                                       <h2>{sum_locale} TL +  KDV</h2>                                                      
                                     </div>                    
 
-                                    <div className={s.toplamucret}> <span> Toplam ücret </span>                                    
-                                                      
+                                    <div className={s.toplamucret}> <span> Toplam ücret </span>                                                                                          
                                                       <h2>{sum_kdv_locale} TL </h2>
                                     </div>                                                        
+                                    
                                                                                                                                     
                         </div>
 
