@@ -86,11 +86,7 @@ export default function Home() {
 
 
 
-          <div className={s.logos}>
-
-
-
-          </div>
+          
 
 
           
