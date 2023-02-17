@@ -9,6 +9,9 @@ const nextConfig = {
     // !! WARN !!
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['https://lh3.googleusercontent.com'],
+  },
   webpack: function (config, {buildId}) {
 
 

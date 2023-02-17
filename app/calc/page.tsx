@@ -167,7 +167,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
                   
             </div>
 
-            {console.log("sasasasasasa", tasiyicisistem?.title)}
+
             
             <div className={s.teklifmainwr} >
 

@@ -1,27 +1,35 @@
-"use client"
+// "use client"
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "../pages/api/auth/[...nextauth]"
+
+
+
 import Head from 'next/head'
 import Image from 'next/image'
-import useSound from 'use-sound';
+// import useSound from 'use-sound';
+import {SignIn, SignOut} from "@/src/components/loginactions"
 import Link from 'next/link'
 import s from  "./page.module.css"
 import { Denk_One } from '@next/font/google'
-import { useState } from 'react';
-import { useRouter } from "next/navigation";
+// import { useState } from 'react';
+// import { useRouter } from "next/navigation";
 const denk = Denk_One({subsets:["latin"], weight:"400"})
 
 import { Inter } from '@next/font/google'
 
 const inter = Inter({ subsets: ['latin', "latin-ext"], weight:'900' })
 
-export default function Home() {
-  const router = useRouter();
+export default async function Home() {
+  // const router = useRouter();
   
   // const [playMorse] = useSound("/sounds/morse.mp3"); 
-  const [playAchieve] = useSound("/sounds/achieve.mp3"); 
-  const [user, setUser] = useState("")
-  const [password, setPassword] = useState("")
+  // const [playAchieve] = useSound("/sounds/achieve.mp3"); 
+  // const [user, setUser] = useState("")
+  // const [password, setPassword] = useState("")
+  
+  const session = await getServerSession(authOptions)
 
-
+  console.log("sessionsession: ", session);
 
   return (
     <div className={inter.className}>
@@ -42,15 +50,36 @@ export default function Home() {
                 <div className={s.loginwr}>
 
                   <h2>ÜYE GİRİŞİ</h2>
-                          <div className={s.inputwr}>
+                          {/* <div className={s.inputwr}>
                                 <span>Kullanıcı adı</span>
                                  <input value={user} name="user" onChange={(e)=>setUser(e?.target?.value)}/> 
                           </div>
                           <div className={s.inputwr}>
                                  <span>Şifre</span>
                                  <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/> 
-                          </div>
-                          <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button>
+                          </div> */}
+                          {/* <button className={s.button} onClick={()=>signIn()}>GİRİŞ</button> */}
+                          {/* <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button> */}
+
+                          {session &&  <div className={s.loggeddata}>
+                                                          
+
+
+                                                                      <div className={s.namewr}>                                                                                                                                        
+                                                                            <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
+                                                                            {session?.user?.name}
+                                                                      </div> 
+
+
+                                                                      <div className={s.teklifwr}> 
+                                                                          <a href={"/calc"}>Teklif</a>
+                                                                      </div>
+
+                                                                      
+                                                                  
+                                                            </div>}
+                          
+                          {session ? <SignOut/> : <SignIn/>}
                 </div>
 
 
@@ -64,18 +93,18 @@ export default function Home() {
 
                           <div className={s.inputwr}>
                                  <span>Ad/Soyad</span>
-                                 <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/> 
+                                 {/* <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/>  */}
                           </div>
                           <div className={s.inputwr}>
                                  <span>İletişim bilgisi</span>
-                                 <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/> 
+                                 {/* <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/>  */}
                           </div>
                           <div className={s.inputwr}>
                                 <span>Mesaj</span>
-                                <textarea rows={4} value={user} name="user" onChange={(e)=>setUser(e?.target?.value)}/> 
+                                {/* <textarea rows={4} value={user} name="user" onChange={(e)=>setUser(e?.target?.value)}/>  */}
                           </div>
 
-                          <button className={s.button} onClick={()=>router?.push("/calc")}>Gönder</button>
+                          {/* <button className={s.button} onClick={()=>router?.push("/calc")}>Gönder</button> */}
                 </div>
 
                 

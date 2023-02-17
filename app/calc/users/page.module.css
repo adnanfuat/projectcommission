@@ -1,0 +1,23 @@
+.shell {
+    background-color: rgb(172, 172, 172);
+}
+
+.image {
+    border-radius: 40px;
+    padding: 10px;
+}
+
+.userrow {
+
+    display:flex ;
+    align-items: center;
+    padding: 20px;
+}
+
+
+.users {
+    
+    display: grid;
+    grid-template-columns: max-content max-content;
+    gap:80px
+}

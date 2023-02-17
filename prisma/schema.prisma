@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model contents {
+  id               Int       @id @default(autoincrement()) @db.UnsignedInt
+  active           Int?      @default(1) @db.TinyInt
+  type             String?   @db.VarChar(25)
+  bigdata          String?   @db.LongText
+  slug_tr          String?   @db.VarChar(135)
+  key              String?   @db.TinyText
+  rank             Int?
+  title_tr         String?   @db.VarChar(135)
+  title_en         String?   @db.TinyText
+  title_fr         String?   @db.TinyText
+  title_ar         String?   @db.TinyText
+  parent_slug      String?   @db.TinyText
+  parent_key       String?   @db.TinyText
+  oldid            Int?
+  oldparent        Int?      @default(0) @db.UnsignedInt
+  parent           Int?      @default(0) @db.UnsignedInt
+  createdat        DateTime  @default(now()) @db.DateTime(0)
+  bigparent        Int?
+  oldbigparent     Int?
+  updatedat        DateTime? @db.DateTime(0)
+  slug_en          String?   @db.TinyText
+  slug_fr          String?   @db.TinyText
+  slug_ar          String?   @db.TinyText
+  bigparent_slug   String?   @db.TinyText
+  country_slug     String?   @db.TinyText
+  city_slug        String?   @db.TinyText
+  district_slug    String?   @db.TinyText
+  subdistrict_slug String?   @db.TinyText
+  user             String?   @db.TinyText
+  img_tr           String?   @db.TinyText
+  img_en           String?   @db.TinyText
+  img_fr           String?   @db.TinyText
+  img_ar           String?   @db.TinyText
+  i_key_1          Float?    @db.Float
+  o_key_1          String?   @db.LongText
+
+  @@index([title_tr], map: "title_tr")
+  @@index([type], map: "type")
+}
+
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
