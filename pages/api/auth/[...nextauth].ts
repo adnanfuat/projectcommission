@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions =
   adapter: PrismaAdapter(prisma),
     
   //secret: "Fnss2P9BIr9XvOTq+jIiv2KzEIT+HYR37eV8+iBWa9o=", // "LlKq6ZtYbr+hTC073mAmAh9/h2HwMfsFo4hrfCx5mLg=",
-  debug:true,
+  debug:false,
   secret:process.env.NEXTAUTH_SECRET
   
   }

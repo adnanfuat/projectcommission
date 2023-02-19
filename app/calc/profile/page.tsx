@@ -1,33 +1,37 @@
 "use client"
 import s from "./page.module.css";
 import { useFormik } from 'formik';
-
-
-
+import { useQuery } from "react-query";
 
 
 export default  function Profile  () {
   
 
+const fetcher_userdata = async() => {
+    
+  let datajson=await fetch("/api/fetchuserdata", { method: 'POST', headers: { 'Content-Type' : 'application/json'}, })   
+    let data =await datajson?.json()
+    data= data?.userinfo;
+    data={...data, bigdata:JSON.parse(data?.bigdata)}
+    return data    
+}
 
-  const sendData = async ()  => {
-    // let userinfo = await prisma.contents.findFirst({where:{slug_tr:"yigitruzgaruzun@gmail.com"}})
-    // console.log("tamam bu iş ", userinfo)
-    fetch("/api/updateuser");
-          
-  }
-
+  const { isLoading, isError, isSuccess, error, data } = useQuery( ["userdata"], () => fetcher_userdata() );    
+  // console.log("dataaaaaaa", data);
 
 
   const formik = useFormik({
     enableReinitialize: true,
-    initialValues: {      
-      jobtype:"assasaasformik",
-      name:"asdsasaddsa",
-      code:12121212121277
-    },
+    initialValues: data?.bigdata,
     onSubmit: (values, {setSubmitting}) => {
-      
+
+                fetch("/api/updateuser", {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(values)
+                })                              
     },
   });   
 
@@ -36,13 +40,13 @@ export default  function Profile  () {
 
 
 
-  console.log("asdsadsaasdasd", formik?.values)
+  // console.log("asdsadsaasdasd", formik?.values)
 
   return (
-    <form  onSubmit={formik.handleSubmit}  className={`${s.form}`}> 
-          <div>
+    <form    className={`${s.form}`}> 
+          
                   <div className={s.shell}>
-                    <div>
+                    <div className={s.row}>
                       <span>Meslek</span>
                       <select value={jobtype} name="jobtype" onChange={formik?.handleChange}>
                         " <option value={""}>Seçiniz</option>"{" "}
@@ -51,19 +55,19 @@ export default  function Profile  () {
                       </select>
                     </div>
 
-                    <div>
+                    <div className={s.row}>
                       <span>Oda Sicil Numarası</span>
                       <input value={code} name="code"  onChange={formik?.handleChange}/>
                     </div>
 
-                    <div>
+                    <div className={s.row}>
                       <span>Ad / Soyad</span>
                       <input value={name} name="name"  onChange={formik?.handleChange}/>
                     </div>
                   </div>
 
-                  <button type="button" onClick={()=>sendData()}>sadsdadsa</button>
-          </div>
+                  <button type="button" onClick={()=>formik?.handleSubmit()} className={s.button}>Kaydet</button>
+          
     </form>
   );
 }

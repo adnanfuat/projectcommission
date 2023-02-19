@@ -29,7 +29,7 @@ export default async function Home() {
   
   const session = await getServerSession(authOptions)
 
-  console.log("sessionsession: ", session);
+  // console.log("sessionsession: ", session);
 
   return (
     <div className={inter.className}>

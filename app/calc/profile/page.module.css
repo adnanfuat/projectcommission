@@ -1,4 +1,29 @@
-.shell {
-    background-color: rgb(172, 172, 172);
+.form {
+    /* background-color: rgb(172, 172, 172); */
+    gap:20px;
+    display: flex;
+    flex-direction: column;
 }
 
+.shell {
+    /* background-color: blanchedalmond; */
+    display: grid;
+    gap:20px
+}
+
+.row {
+    display:flex;
+    flex-direction: column;
+    /* background-color: aqua; */
+    gap:6px;
+}
+
+.row span {
+    margin-left: 10px;
+    
+}
+
+.button {
+    display: flex;
+    padding: 30px;
+}
