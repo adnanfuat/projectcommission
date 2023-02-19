@@ -11,7 +11,7 @@ export default function RootLayout({
   return (    
             <div className={s.shell}>
 
-              İçerikler buradan gelecek
+              {/* İçerikler buradan gelecek */}
 
               {children}
 

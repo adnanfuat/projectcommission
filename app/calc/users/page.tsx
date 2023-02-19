@@ -1,57 +1,61 @@
-// import Modal from 'react-modal';
-
-// import Head from 'next/head';
-// import {LayoutMain} from "@/components/layouts/console/layoutmain"; 
-// import {useQuery} from "react-query";
-// import {graphcms} from "@/constants/graphcms";
-// import { SwissArmyKnifeQuery } from '@/__queries/global/swissarmyknife/swissarmyknifequery';
 import s from "./page.module.css";
 import prisma from "@/src/db/prismadb";
 import {JVIEW} from "./jview";
 
-//  console.log("prisma::::..", prisma)
-// import { useState } from 'react';
+import { getServerSession } from "next-auth/next"
+import { authOptions } from "@/pages/api/auth/[...nextauth]"
 
 
+export default async function Users  (params) {
+  
+  let page = params?.searchParams?.page
+  console.log("paramssss:::--> ", page);
+  
+  // ?page=classification
+  const session = await getServerSession(authOptions);
 
-export default async function Users  () {
-
-
-  const users = await prisma.user.findMany({
-  });
-
-
-
-
-  // console.log("notes::::", notes);
+  let user= session?.user;
 
   
-//   const fetcher =async ()=> {return await graphcms?.request(SwissArmyKnifeQuery, {data:{type:"users"}})};    
-                                    
-//   const {  isError, isSuccess, data } = useQuery( ["SwissArmyKnifeQuery" ], () => fetcher() ,       // Burada sorguyu tekrar tekrar çekmemesi gerkeiyor ama çekiyor. Şimdilik pas geçtim, İleriye doğru çözülebilir...    
-//                                                       {
-//                                                             // refetchOnWindowFocus:true
-//                                                             // refetchOnWindowFocus: false,
-//                                                             // refetchOnMount: false,
-//                                                             // refetchOnReconnect: false,
-//                                                             // retry: false,
-//                                                             // staleTime: 24*60*60,                                                     
-//                                                       }
-//           );
-// let users=data?.swissarmyknifequery?.o_key_1;     
+  const userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:user?.email}]} });
+  let bigdata=userinfo?.bigdata;
+  bigdata=JSON.parse(bigdata);
+
+  let loggedusertype=bigdata?.usertype;
+  
+  // console.log("session:::::", loggedusertype)
+
+  let  users=[]
+  
+  let title=""
 
 
+  if(page=="admin") 
+  {
+    users = await prisma.contents.findMany({ where:{AND:[ {type:"userinfo"}]}});
+    title="Tüm kullanıcılar"
+  } 
+  else if(page=="classification") 
+  {
+    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"standart"}, {type:"userinfo"}]}});
+    title="Tasnif"
+  }
+  else if(page=="architect") 
+  {
+    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"kullanici"}, {parent_slug:"architect"}, {type:"userinfo"}]}});
+    title="Yönetici Mimar"
+  }
+  else if(page=="engineer") 
+  {
+    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"kullanici"}, {parent_slug:"engineer"}, {type:"userinfo"}]}});
+    title="Yönetici Mühendis"
+  }
 
-// const [useremail, setuseremail] = useState(null);
-// const [modalIsOpen, setIsOpen] = useState(false);
-// function closeModal() { setIsOpen(false); }
-
-// let userinfojson=users?.find(user=>user?.email==useremail)?.bigdata;
 
 
 
   return (
-    <div>
+    <div><h2>{title}</h2>
     
     
             <div className={s.shell}>                  
@@ -60,11 +64,11 @@ export default async function Users  () {
                                       
                                                     return <div className={s.userrow} key={index}>  
                                                                               
-                                                                              <img src={user?.image}  className={s.image} />
+                                                                              <img src={user?.img_tr}  className={s.image} />
                                                                               
                                                                               <div className={s.userdata}>
                                                                                   <span>{user?.name}</span>
-                                                                                  <UserData props={{email:user?.email}}/>
+                                                                                  <UserData props={{email:user?.slug_tr,  loggedusertype}}/>
                                                                                   {/* <div><button  className={s.button} onClick={()=>{setIsOpen(true); setuseremail(user?.email)}}>Tıkla</button></div> */}
 
                                                                               </div> 
@@ -93,7 +97,7 @@ export default async function Users  () {
 
 const UserData  = async ({props}) => {
 
-  let {email} = props ?? {}
+  let {email, loggedusertype} = props ?? {}
 
   
   const userdata = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:email}]}});
@@ -104,12 +108,9 @@ const UserData  = async ({props}) => {
   
   return (
     <div>
-      {email}    
-
-
-
-      <JVIEW props={{bigdata}}/>
-      Ara yöne
+      email: {email}    --
+      {loggedusertype}
+      <JVIEW props={{bigdata, loggedusertype, email}}/>      
     </div>
   )
 }

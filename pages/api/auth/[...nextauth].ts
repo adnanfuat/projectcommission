@@ -6,7 +6,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 
-
 export const authOptions: NextAuthOptions = 
   {
   
@@ -18,7 +17,7 @@ export const authOptions: NextAuthOptions =
         
   
                   // let tokenObj=await db.session.findFirst({where:{userId:user?.id}})        
-                  // let userinfo=await db.contents.findFirst({select:{bigdata:true, slug_tr:true}, where:{AND:[{type:"user-info"}, {slug_tr:user?.email}]}}); //devamlı bu verileri çekmesin diye cacheleme yapılabilir.. ya da backendde cachleme yapılabilir..
+                  // let userinfo=await db.contents.findFirst({select:{bigdata:true, slug_tr:true}, where:{AND:[{type:"userinfo"}, {slug_tr:user?.email}]}}); //devamlı bu verileri çekmesin diye cacheleme yapılabilir.. ya da backendde cachleme yapılabilir..
   
                   // let companies=await db.contents.findMany({select:{title_tr:true, slug_tr:true}, where:{AND:[{type:"company"}, {user:user?.email}]}}); //devamlı bu verileri çekmesin diye cacheleme yapılabilir.. ya da backendde cachleme yapılabilir..                
   
@@ -34,8 +33,21 @@ export const authOptions: NextAuthOptions =
   },
   
   events:{
-    async createUser() {     
-                                  // let result=  await graphcms?.request(SwissArmyKnifeMutation,{data:{type:"initializenewuser", email:user?.email}});                                
+    async createUser({user}) {     
+                                  // let result=  await graphcms?.request(SwissArmyKnifeMutation,{data:{type:"initializenewuser", email:user?.email}});        
+                                  
+                                  let bigdata=                                  
+                                    {
+                                      name :user?.name,
+                                      usertype: "standart",
+                                      jobtype: "",
+                                      code: 0
+                                    }                                    
+                                  
+                                    bigdata=JSON.stringify(bigdata)
+
+                                  let userinfo=await prisma.contents.create({data:{bigdata, type:"userinfo", img_tr:user?.image ,slug_tr:user?.email, bigparent_slug:"standart" ,  title_tr:user?.name, user:user?.email  }});
+
                              }
   },
   

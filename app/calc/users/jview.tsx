@@ -2,25 +2,70 @@
 "use client"
 
 import { JsonViewer, createDataType } from '@textea/json-viewer'
+import { useState } from 'react'
+import s from "./jview.module.css"
+
 
 export const JVIEW = ({props}) => {
 
-    let {bigdata} = props ?? {}  
+    let {email,bigdata, loggedusertype} = props ?? {}  
     // userdata=JSON.parse(userdata)
-    const Component = () => (<JsonViewer value={bigdata ?? {}}/>)
+    const Component = () => (<JsonViewer  displayDataTypes={false} displayObjectSize={false} value={bigdata ?? {}}/>)
+
+    
+    
+    const [relatedusertype, setrelatedusertype] = useState(bigdata?.usertype)
+
+
+        
+    const saveFunc = async () => {
+                              let datajson = await fetch("/api/changeusertype", 
+                              { method: 'POST', headers: { 'Content-Type' : 'application/json'},
+                              body: JSON.stringify({email, usertype:relatedusertype})
+                            })   
+
+                                  //   let data =await datajson?.json()
+                                  //   data= data?.userinfo;
+                                  //   data={...data, bigdata:JSON.parse(data?.bigdata)}
+                                  //   return data    
+                                  // }
+
+                            }
+    
 
     return (
-      <div>
+      <div> -Usertype:{bigdata?.usertype}
+---
+loggedusertype: {loggedusertype}
                     <div>
-                    <select value={"user"}>
-                        <option value={"standart"}>Standart</option>
-                        <option value={"datainput"}>Veri Girişi</option>
-                        <option value={"user"}>Kullanıcı</option>
-                        <option value={"rolmanager-arc"}>Rol yönetimi - Mimar</option>
-                        <option value={"rolmanager-eng"}>Rol yönetimi - Mühendisi</option>
-                        <option value={"admin"}>Yönetici</option>
-                    </select>
+                                            <select value={relatedusertype} onChange={(e)=>setrelatedusertype(e?.target?.value)}>                              
+                                                        {(loggedusertype=="tasnif" || loggedusertype=="admin") &&
+                                                        <option value={"standart"}>Standart</option>
+                                                        }
+
+                                                        {(loggedusertype=="admin") &&
+                                                          <option value={"verigirisi"}>Veri Girişi</option>
+                                                        }
+
+                                                        {(loggedusertype=="admin-mimar" || loggedusertype=="admin-muhendis"  || loggedusertype=="admin" || loggedusertype=="tasnif" ) &&
+                                                          <option value={"kullanici"}>Kullanıcı</option>
+                                                        }
+                                                        {(loggedusertype=="admin") &&
+                                                          <option value={"tasnif"}>Kullanıcı tasnifçisi</option>
+                                                          }
+                                                        {( loggedusertype=="admin") &&
+                                                          <option value={"admin-mimar"}>Yönetici - Mimar</option>
+                                                          }
+                                                        {( loggedusertype=="admin") &&
+                                                          <option value={"admin-muhendis"}>Yönetici- Mühendis</option>
+                                                          }
+                                                        {(loggedusertype=="admin") &&
+                                                          <option value={"admin"}>Yönetici</option>
+                                                        }
+                                        </select>
                     </div>
+                    
+                    <button className={s.button} onClick={()=>{saveFunc()}}>Kaydet</button>
 
         <Component />
       </div>
