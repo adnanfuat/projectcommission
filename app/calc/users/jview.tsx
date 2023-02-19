@@ -51,7 +51,7 @@ loggedusertype: {loggedusertype}
                                                           <option value={"kullanici"}>Kullanıcı</option>
                                                         }
                                                         {(loggedusertype=="admin") &&
-                                                          <option value={"tasnif"}>Kullanıcı tasnifçisi</option>
+                                                          <option value={"tasnif"}>Kullanıcı tasnifi</option>
                                                           }
                                                         {( loggedusertype=="admin") &&
                                                           <option value={"admin-mimar"}>Yönetici - Mimar</option>

@@ -21,8 +21,10 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions)
 
   const userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:session?.user?.email}]} });
-  let bigdata=userinfo?.bigdata;
+  let bigdata=userinfo?.bigdata ?? "{}";
+  console.log("bigdatabigdata: ", userinfo)
   bigdata=JSON.parse(bigdata);
+
 
   let loggedusertype=bigdata?.usertype;
 
