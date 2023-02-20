@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
     const session = await getServerSession(req, res, authOptions);
 
-     console.log("session::: ", session);
+    //  console.log("session::: ", session);
 
      if (session) {
 

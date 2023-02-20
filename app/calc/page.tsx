@@ -181,7 +181,7 @@ if (!(usertype=="admin" || usertype=="admin-muhendis" || usertype=="admin-mimar"
                                                             </div>
 
                                                             <div className={s.section}>              
-                                                                        <span><BiDownload size={20}/> <Link href={"/files/proje_hizmet_sozlesmesi.docx"} style={{fontSize:25}}>Örnek Proje Hizmet Sözleşmesi</Link></span>                                                                        
+                                                                        <span><BiDownload size={20}/><Link href={"/files/proje_hizmet_sozlesmesi.docx"} >Örnek Proje Hizmet Sözleşmesi</Link></span>
                                                             </div>
                                                                                                                                                                                                                                      
 

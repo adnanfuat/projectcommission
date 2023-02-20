@@ -26,15 +26,7 @@
 }
 
 
-@media only screen and (max-width: 1200px) {
-    .form {
-        display: grid;        
-        grid-template-columns: 1fr;
-        /* gap:20px; */
-        height: 100%;
-        /* background-color: blueviolet; */
-    }
-  }
+
 
 
 
@@ -159,8 +151,7 @@
     gap:30px;
     margin:10px;
     width: 80%;
-    padding: 40px;
-    
+    padding: 40px;    
 }
 
 
@@ -287,3 +278,32 @@
     background-color: #005c9d;
     color: white;
 }
+
+
+
+@media only screen and (max-width: 1200px) {
+    .form {
+        display: grid;        
+        grid-template-columns: 1fr;
+        /* gap:20px; */
+        height: 100%;
+        /* background-color: blueviolet; */
+    }
+
+    .section {
+                padding: 20px;
+                gap: 10px;      
+            }
+    
+    
+     .teklifwr{
+        display: flex;
+        flex-direction: column;
+        border:1px solid black;    
+        gap:30px;
+        margin:10px;
+        width: 100%;
+        padding: 20px;   
+     }       
+
+  }
