@@ -108,7 +108,13 @@ export default async function Home() {
                                                                       </div>
                                                             }
 
-                { !session?.user?.email && <div style={{textAlign:"center"}}> <div> Sakarya Proje Komisyonu platformuna hoş geldiniz.</div> <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> </div> }
+                { !session?.user?.email && <div style={{textAlign:"center", display:"flex", gap:11, flexDirection:"column"}}> 
+                            <h2> Proje Komisyonu Platformuna Hoş Geldiniz.</h2> 
+                            <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> 
+                            <div>Giriş yapmak için Google Hesabınızı kullanabilirsiniz.</div> 
+                            <a target={"_blank"} href="https://support.google.com/accounts/answer/176347?hl=tr&co=GENIE.Platform%3DDesktop"><div>Google hesabınızda başka bir e-posta adresi ile oturum açabilirsiniz.</div> </a>
+                            
+                            </div> }
 
                 <div className={s.logowr}> <img src='/images/logolar_kucuk.png'/> </div>    
                                                    
@@ -129,16 +135,21 @@ export default async function Home() {
 
                 <h2>BİZE ULAŞIN</h2>
 
+                Mimarlar: <a href="mailto:54.promim@gmail.com">54.promim@gmail.com</a>                
+                İnşaat Mühendisleri: <a href="mailto:bilgi@sakaryaprojekomisyonu.com">bilgi@sakaryaprojekomisyonu.com</a>
+
+
+
                           <div className={s.inputwr}>
-                                 <span>Ad/Soyad</span>
+                                 {/* <span>Ad/Soyad</span> */}
                                  {/* <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/>  */}
                           </div>
                           <div className={s.inputwr}>
-                                 <span>İletişim bilgisi</span>
+                                 {/* <span>İletişim bilgisi</span> */}
                                  {/* <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/>  */}
                           </div>
                           <div className={s.inputwr}>
-                                <span>Mesaj</span>
+                                {/* <span>Mesaj</span> */}
                                 {/* <textarea rows={4} value={user} name="user" onChange={(e)=>setUser(e?.target?.value)}/>  */}
                           </div>
 
