@@ -40,7 +40,7 @@ export default async function Home() {
               case "admin":   usertypeText="Tam yetkili yönetici"                  
                      break;          
                      
-              case "yeniuye":   usertypeText="Yeni kullanıcı"                  
+              case "yeniuye":   usertypeText="Yeni üye"                  
                      break;                               
 
               case "admin-mimar":   usertypeText="Yönetici - Mimar"                  
@@ -122,7 +122,7 @@ export default async function Home() {
                           </div> */}
                           {/* <button className={s.button} onClick={()=>signIn()}>GİRİŞ</button> */}
                           {/* <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button> */}
-                          {(session && usertype!=="yenikullanici" ) &&  <div className={s.loggeddata}>                                                          
+                          {(session && usertype!=="yeniuye" ) &&  <div className={s.loggeddata}>                                                          
                                                                       <div className={s.teklifwr}> 
                                                                           <a href={"/calc"}>PROJE HİZMET BEDELİ HESAPLAMA</a>
                                                                       </div>
