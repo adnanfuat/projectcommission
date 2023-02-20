@@ -94,7 +94,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
 
 //     console.log("asdasdsasdasad", JSON.parse(yapisinifi)?.category);
 
-if (!(usertype=="admin" || usertype=="admin-muhendis" || usertype=="admin-mimar" || usertype=="kullanici")) return <div></div>
+if (!(usertype=="admin" || usertype=="admin-muhendis" || usertype=="admin-mimar" || usertype=="kullanici")) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
 
   return (    
             <form  onSubmit={formik.handleSubmit}  className={`${s.form} ${inter.className}`}> 
