@@ -122,7 +122,7 @@ export default async function Home() {
                           </div> */}
                           {/* <button className={s.button} onClick={()=>signIn()}>GİRİŞ</button> */}
                           {/* <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button> */}
-                          {session &&  <div className={s.loggeddata}>                                                          
+                          {(session && usertype!=="yenikullanici" ) &&  <div className={s.loggeddata}>                                                          
                                                                       <div className={s.teklifwr}> 
                                                                           <a href={"/calc"}>PROJE HİZMET BEDELİ HESAPLAMA</a>
                                                                       </div>

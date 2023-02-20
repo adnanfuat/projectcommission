@@ -58,8 +58,8 @@ export default async function RootLayout({
                                         <div className={s.menu}>
 
 
-                                                      {(loggedusertype=="admin" || loggedusertype=="kullanici" || loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar") && 
-                                                        <Link href={"/calc"} title="Proje hesaplama"><RiCalculatorFill style={{color:"white", fontSize:42}}/> </Link>}                                                                                 
+                                                      {(session && (loggedusertype=="admin" || loggedusertype=="kullanici" || loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar")) && 
+                                                        <Link href={"/calc"} title="Proje hesaplama"><RiCalculatorFill style={{color:"white", fontSize:42}}/> </Link>}
 
 
                                                       {(loggedusertype=="admin") && 
