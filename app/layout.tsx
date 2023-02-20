@@ -66,7 +66,7 @@ export default async function RootLayout({
                                                         <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:25}}/></Link>}                                                                                 
                                                       {(loggedusertype=="admin-mimar") && 
                                                         <Link href={"/calc/users?page=architect"}  title="Yönetici - Mimar"><MdOutlineArchitecture style={{color:"white", fontSize:25}}/></Link>}                           
-                                                      {(loggedusertype=="admin-muhendis" || 1==1) && 
+                                                      {(loggedusertype=="admin-muhendis") && 
                                                         <Link href={"/calc/users?page=engineer"}  title="Yönetici - Mühendis"><FaBuilding style={{color:"white", fontSize:20}}/></Link>}                           
                                                                           
                                                       {(1==1) && 
