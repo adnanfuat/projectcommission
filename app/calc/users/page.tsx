@@ -40,7 +40,7 @@ export default async function Users  (params) {
     users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"yeniuye"}, {parent_slug:"architect"}, {type:"userinfo"}]}});
     title="Yönetici Mimar";
 
-    if (loggedusertype!=="architect" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
+    if (loggedusertype!=="admin-mimar" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
 
 
   }
@@ -49,7 +49,7 @@ export default async function Users  (params) {
     users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"yeniuye"}, {parent_slug:"engineer"}, {type:"userinfo"}]}});
     title="Yönetici Mühendis";
 
-    if (loggedusertype!=="engineer" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
+    if (loggedusertype!=="admin-muhendis" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
   }
 
 
