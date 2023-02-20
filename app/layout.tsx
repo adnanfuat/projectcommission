@@ -59,7 +59,7 @@ export default async function RootLayout({
 
 
                                                       {(loggedusertype=="admin" || loggedusertype=="kullanici" || loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar") && 
-                                                        <Link href={"/calc"} title="Tüm kullanıcılar"><RiCalculatorFill style={{color:"white", fontSize:25}}/> </Link>}                                                                                 
+                                                        <Link href={"/calc"} title="Proje hesaplama"><RiCalculatorFill style={{color:"white", fontSize:25}}/> </Link>}                                                                                 
 
 
                                                       {(loggedusertype=="admin") && 
