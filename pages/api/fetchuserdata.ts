@@ -7,12 +7,19 @@ export default async function handler(req, res) {
 
     const session = await getServerSession(req, res, authOptions);
 
-    // console.log("session::: ", session);
+     console.log("session::: ", session);
 
-    let user = session?.user;
+     if (session) {
 
-    let userinfo = await prisma?.contents.findFirst({where:{AND:[{slug_tr:user?.email}, {type:"userinfo"}]}})
+       let user = session?.user;    
+       let userinfo = await prisma?.contents.findFirst({where:{AND:[{slug_tr:user?.email}, {type:"userinfo"}]}})
+       res.status(200).json({ userinfo })
+       
+     } else
+     {
+      res.status(200).json({ userinfo:undefined })
+     }
+    
 
-    res.status(200).json({ userinfo })
 
   }

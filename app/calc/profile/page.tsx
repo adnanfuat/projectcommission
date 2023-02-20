@@ -17,7 +17,7 @@ const fetcher_userdata = async() => {
 }
 
   const { isLoading, isError, isSuccess, error, data } = useQuery( ["userdata"], () => fetcher_userdata() );    
-  // console.log("dataaaaaaa", data);
+  //  console.log("mimmmmmmmmmmmmmmmm", data);mimmmmmmmmmmmmmmmm
 
 
   const formik = useFormik({
@@ -41,6 +41,10 @@ const fetcher_userdata = async() => {
 
 
   // console.log("asdsadsaasdasd", formik?.values)
+
+  if (!data) {
+    return <div style={{color:"white", padding:50, backgroundColor:"black"}}>Yetkiniz olmayan alandasınız</div>
+  }
 
   return (
     <form    className={`${s.form}`}> 
