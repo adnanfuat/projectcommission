@@ -1,3 +1,7 @@
+.shell {
+  padding: 10px;
+}
+
 .gridwr {  
           display: grid;
           /* grid-template-columns: 1fr 1fr; */
@@ -96,7 +100,7 @@
 
   .logowr {
     background-color: rgb(255, 255, 255);    
-    max-width: 450px;
+    
     border-radius: 8px;
     overflow: hidden;
     display: grid;
@@ -201,8 +205,11 @@ border-radius: 10px;
   
     display: grid;
     grid-template-columns: 1fr ;
-    gap: 20px;
-    padding: 40px;
-    border-radius: 8px;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 4px;
+
+    font-size: 0.8rem;
+    font-weight: 300;
   }
 }

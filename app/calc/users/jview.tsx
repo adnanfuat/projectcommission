@@ -45,10 +45,10 @@ export const JVIEW = ({props}) => {
                                                           <option value={"admin-mimar"}>Yönetici - Mimar</option>
                                                           }
                                                         {( loggedusertype=="admin") &&
-                                                          <option value={"admin-muhendis"}>Yönetici- Mühendis</option>
+                                                          <option value={"admin-muhendis"}>Yönetici - Mühendis</option>
                                                           }
                                                         {(loggedusertype=="admin") &&
-                                                          <option value={"admin"}>Yönetici</option>
+                                                          <option value={"admin"}>Tam Yetkili Yönetici</option>
                                                         }
                                         </select>
                     </div>

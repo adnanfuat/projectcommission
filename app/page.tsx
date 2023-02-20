@@ -15,7 +15,6 @@ const inter = Inter({ subsets: ['latin', "latin-ext"], weight:'900' })
 
 export default async function Home() {
 
-
        
        const session = await getServerSession(authOptions)
        let userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:session?.user?.email}]} });
@@ -34,13 +33,13 @@ export default async function Home() {
        let usertypeText="";
 
        switch (usertype) {
-              case "tasnif":   usertypeText="Kullanıcı tasnifi - (X)"                  
+              case "tasnif":   usertypeText="Kullanıcı Tasnifi - (X)"                  
                      break;
 
-              case "admin":   usertypeText="Tam yetkili yönetici"                  
+              case "admin":   usertypeText="Tam Yetkili Yönetici"                  
                      break;          
                      
-              case "yeniuye":   usertypeText="Yeni üye"                  
+              case "yeniuye":   usertypeText="Yeni Üye"                  
                      break;                               
 
               case "admin-mimar":   usertypeText="Yönetici - Mimar"                  
@@ -79,7 +78,7 @@ export default async function Home() {
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className={s.shell}>
  
 
       <div className={s.gridwr}>
@@ -109,7 +108,7 @@ export default async function Home() {
                                                                       </div>
                                                             }
 
-                { !session?.user?.email && <div style={{maxWidth:450, minWidth:450, textAlign:"center"}}> <div> Sakarya Proje Komisyonu platformuna hoş geldiniz.</div> <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> </div> }
+                { !session?.user?.email && <div style={{textAlign:"center"}}> <div> Sakarya Proje Komisyonu platformuna hoş geldiniz.</div> <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> </div> }
 
                 <div className={s.logowr}> <img src='/images/logolar_kucuk.png'/> </div>    
                                                    
@@ -125,9 +124,6 @@ export default async function Home() {
                 </div>
 
 
-                {/* <div className={s.mainlogowr}> <img src='/images/logo.png' width={184} height={133}/>  </div>          */}
-
-                
                   
                 <div className={s.loginwr}>
 
