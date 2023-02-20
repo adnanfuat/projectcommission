@@ -39,14 +39,14 @@ export const authOptions: NextAuthOptions =
                                   let bigdata=                                  
                                     {
                                       name :user?.name,
-                                      usertype: "standart",
+                                      usertype: "yeniuye",
                                       jobtype: "",
                                       code: 0
                                     }                                    
                                   
                                     bigdata=JSON.stringify(bigdata)
 
-                                  let userinfo=await prisma.contents.create({data:{bigdata, type:"userinfo", img_tr:user?.image ,slug_tr:user?.email, bigparent_slug:"standart" ,  title_tr:user?.name, user:user?.email  }});
+                                  let userinfo=await prisma.contents.create({data:{bigdata, type:"userinfo", img_tr:user?.image ,slug_tr:user?.email, bigparent_slug:"yeniuye" ,  title_tr:user?.name, user:user?.email  }});
 
                              }
   },

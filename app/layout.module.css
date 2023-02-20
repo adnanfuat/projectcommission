@@ -1,11 +1,73 @@
+
 .menuwr{
   display: flex;    
+  justify-content: space-between;
   gap:20px;
   background-color: rgb(0, 0, 0);
+  padding: 10px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
 }
 
 .namewr {
     display: flex;
     gap:10px;
     align-items: center;
+    color: white;
+  }
+
+  .namewr a {  
+    color: white;
+  }
+
+
+.rightwr {
+    display: flex;
+    gap:20px;    
+  }
+
+
+  .leftwr {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+  }
+
+  .logowr {
+    max-width: 70px;
+    max-height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    padding: 2px 10px;
+  }
+
+
+  .menu {
+    grid-area: menu;
+    display: flex;  
+    padding: 10px;
+    gap:20px;    
+    
+    align-items: center;
+  }
+
+  .menu a a>span {
+      color: white;
+  }
+
+  .bg {
+    background-image: url("/images/bg.jpg");  
+    height: 100vh;  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    grid-template-columns: max-content max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }

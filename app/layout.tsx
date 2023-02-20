@@ -8,6 +8,15 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import s from "./layout.module.css"
 import prisma from "@/src/db/prismadb";
 import {SignIn, SignOut} from "@/src/components/loginactions";
+import Link from 'next/link';
+
+import { GiCardExchange } from "react-icons/gi";
+import { FaBuilding } from "react-icons/fa";
+import { MdOutlineArchitecture } from "react-icons/md";
+import { RiShieldUserFill, RiUserFill } from "react-icons/ri";
+
+
+
 
 
 export default async function RootLayout({
@@ -18,30 +27,77 @@ export default async function RootLayout({
 
 
   const session = await getServerSession(authOptions);
-  const userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:session?.user?.email}]} });
+  let userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:session?.user?.email}]} });
   let bigdata=userinfo?.bigdata ?? "{}";
   // console.log("bigdatabigdata: ", userinfo)
   bigdata=JSON.parse(bigdata);
+  userinfo={...userinfo, bigdata, createdat:null, updatedat:null};
   let loggedusertype=bigdata?.usertype;
 
+   //console.log("asdsadsadsdasda asdsdasdasdasad", userinfo);
 
   return (
-    <html className={inter.className}>
-      
-                          <body>
+    <html className={inter.className}>      
+                          <body className={s.bg}>
                               <div className={s.menuwr}>
 
-                                    {session ? <SignOut/> : <SignIn/>}
-                                    
-                                              <div className={s.namewr}>                                                                                                                                        
-                                                                    <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
-                                                                    {session?.user?.name}
-                                              </div> 
+                                    <div className={s.leftwr}>                                
+                                          <div className={s.logowr}>
+                                          <Link href={"/"} title='Sakarya İnşaat Komisyonu'>
+                                                <img src='/images/logo.png' width={"auto"} height={"auto"}/>
+                                          </Link>
+
+                                          </div>                                         
+                                          <span>SAKARYA İNŞAAT KOMİSYONU</span>
+                                    </div>
+
+
+
+
+                                        <div className={s.menu}>
+                                                                                                            
+                                                      {(loggedusertype=="admin") && 
+                                                        <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:25}}/> <span>Tüm kullanıcılar</span></Link>}                                                                                 
+                                                      {(loggedusertype=="admin-mimar") && 
+                                                        <Link href={"/calc/users?page=architect"}  title="Yönetici - Mimar"><MdOutlineArchitecture style={{color:"white", fontSize:25}}/></Link>}                           
+                                                      {(loggedusertype=="admin-muhendis" || 1==1) && 
+                                                        <Link href={"/calc/users?page=engineer"}  title="Yönetici - Mühendis"><FaBuilding style={{color:"white", fontSize:20}}/></Link>}                           
+                                                                          
+                                                      {(1==1) && 
+                                                        <Link href={"/calc/profile"} title="Profil"><RiUserFill style={{color:"white", fontSize:25}}/></Link>
+                                                      }
+                                        </div>
+
+
+                                        <div className={s.rightwr}>
+
+                                              { session ? <SignOut/> : <SignIn/> }
+                                              
+                                                        {session && <div className={s.namewr}>                                                                                                                                        
+                                                                              <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
+                                                                             <Link href={"/calc/profile"}>
+                                                                             { session?.user?.name }                                                                        
+                                                                             </Link> 
+                                                        </div> 
+
+                                              }
+
+                                        </div>
+
 
                               </div>
-                              <LayoutInner>
+
+
+
+                              
+                              <LayoutInner userinfo={userinfo}>
+                                
+
+
                                     {children}                          
                               </LayoutInner>
+                          
+                          
                           </body>                
     </html>
   )

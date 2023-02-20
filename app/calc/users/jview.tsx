@@ -26,26 +26,21 @@ export const JVIEW = ({props}) => {
                             }
     
 
-    return (
-      <div> -Usertype:{bigdata?.usertype}
----
-loggedusertype: {loggedusertype}
-                    <div>
-                                            <select value={relatedusertype} onChange={(e)=>setrelatedusertype(e?.target?.value)}>                              
-                                                        {(loggedusertype=="tasnif" || loggedusertype=="admin") &&
-                                                        <option value={"standart"}>Standart</option>
-                                                        }
+                            const [componentOpen, setcomponentOpen] = useState(false)
 
-                                                        {/* {(loggedusertype=="admin") &&
-                                                          <option value={"verigirisi"}>Veri Girişi</option>
-                                                        } */}
+    return (
+      <div className={s.shell}>
+                    <div>
+                                            <select value={relatedusertype} onChange={(e)=>setrelatedusertype(e?.target?.value)} className={s.select}>       
+
+                                                        {(loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar" || loggedusertype=="admin") &&
+                                                        <option value={"yeniuye"}>Yeni Üye</option>
+                                                        }
 
                                                         {(loggedusertype=="admin-mimar" || loggedusertype=="admin-muhendis"  || loggedusertype=="admin" ) &&
                                                           <option value={"kullanici"}>Kullanıcı</option>
                                                         }
-                                                        {(loggedusertype=="admin") &&
-                                                          <option value={"tasnif"}>Kullanıcı tasnifi</option>
-                                                          }
+                                                        
                                                         {( loggedusertype=="admin") &&
                                                           <option value={"admin-mimar"}>Yönetici - Mimar</option>
                                                           }
@@ -60,7 +55,7 @@ loggedusertype: {loggedusertype}
                     
                     <button className={s.button} onClick={()=>{saveFunc()}}>Kaydet</button>
 
-        <Component />
+        {componentOpen && <Component />}
       </div>
     );
   }

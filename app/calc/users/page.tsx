@@ -54,26 +54,39 @@ export default async function Users  (params) {
 
 
   return (
-    <div><h2>{title}</h2>
     
     
-            <div className={s.shell}>                  
-                          <div className={s.users}>
+    
+            <div className={s.shell}>         
+                          <h2>{title}</h2>         
+                          {users?.length>0 && <div className={s.users}>
                                     { users?.map((user, index)=>{ 
+
+                                              user= {...user, bigdata:JSON.parse(user?.bigdata)}
                                       
+                                              
+
                                                     return <div className={s.userrow} key={index}>  
                                                                               
-                                                                              <img src={user?.img_tr}  className={s.image} />
+                                                                              <div><img src={user?.img_tr}  className={s.image} /></div>
                                                                               
                                                                               <div className={s.userdata}>
-                                                                                  <span>{user?.name}</span>
+                                                                                  <h3>{user?.title_tr}</h3>
+                                                                                  <div>{user?.bigdata?.usertype}</div>
+                                                                                  <div>{user?.bigdata?.jobtype} / {user?.bigdata?.code}</div>                                                                                  
                                                                                   <UserData props={{email:user?.slug_tr,  loggedusertype}}/>
                                                                                   {/* <div><button  className={s.button} onClick={()=>{setIsOpen(true); setuseremail(user?.email)}}>Tıkla</button></div> */}
 
                                                                               </div> 
                                                             </div>
                                             }) }            
-                          </div>    
+                          </div> }   
+
+
+                          {!(users?.length>0) && <div className={s.empty}>
+                              Kayıt yok
+                            </div>
+                          }
 
                           
 
@@ -83,7 +96,7 @@ export default async function Users  (params) {
 
                   </div>
 
-              </div>
+              
     
   )
 }
@@ -106,9 +119,7 @@ const UserData  = async ({props}) => {
   // console.log("userdata::::", userdata)
   
   return (
-    <div>
-      email: {email}    --
-      {loggedusertype}
+    <div>      
       <JVIEW props={{bigdata, loggedusertype, email}}/>      
     </div>
   )

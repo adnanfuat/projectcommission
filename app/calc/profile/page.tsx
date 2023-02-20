@@ -49,7 +49,7 @@ const fetcher_userdata = async() => {
                     <div className={s.row}>
                       <span>Meslek</span>
                       <select value={jobtype} name="jobtype" onChange={formik?.handleChange}>
-                        " <option value={""}>Seçiniz</option>"{" "}
+                        <option value={""}>Seçiniz</option>"{" "}
                         <option value={"architect"}>Mimar</option>
                         <option value={"engineer"}>İnşaat Mühendisi</option>
                       </select>

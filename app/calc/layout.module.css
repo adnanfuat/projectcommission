@@ -1,26 +1,14 @@
 .shell {
-  background-color: beige;
-  display: grid;
-  grid-template-areas:    
-    "menu"
-    "contents"
-    ;        
+  
+  display: flex;
+     
   /* grid-template-columns: max-content 1fr; */  
   grid-template-rows: max-content 1fr;
-  min-height: 98vh;      
+  /* min-height: 98vh;       */
   background-color: black;  
 }
 
 
-.menu {
-  grid-area: menu;
-  display: flex;  
-  padding: 10px;
-  gap:20px;
-  background-color: black;
-  color: white;
-  align-items: center;
-}
 
 .contents {
   grid-area: contents;
