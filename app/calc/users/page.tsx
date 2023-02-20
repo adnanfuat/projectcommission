@@ -40,7 +40,7 @@ export default async function Users  (params) {
     users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"yeniuye"}, {parent_slug:"architect"}, {type:"userinfo"}]}});
     title="Yönetici Mimar";
 
-    if (loggedusertype!=="arhitect" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
+    if (loggedusertype!=="architect" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
 
 
   }
