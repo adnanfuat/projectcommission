@@ -32,22 +32,24 @@ export default async function Users  (params) {
   if(page=="admin") 
   {
     users = await prisma.contents.findMany({ where:{AND:[ {type:"userinfo"}]}});
-    title="Tüm kullanıcılar"
-  } 
-  else if(page=="classification") 
-  {
-    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"standart"}, {type:"userinfo"}]}});
-    title="Tasnif"
-  }
+    title="Tüm kullanıcılar";
+    
+  }   
   else if(page=="architect") 
   {
-    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"kullanici"}, {parent_slug:"architect"}, {type:"userinfo"}]}});
-    title="Yönetici Mimar"
+    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"yeniuye"}, {parent_slug:"architect"}, {type:"userinfo"}]}});
+    title="Yönetici Mimar";
+
+    if (loggedusertype!=="arhitect" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
+
+
   }
   else if(page=="engineer") 
   {
-    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"kullanici"}, {parent_slug:"engineer"}, {type:"userinfo"}]}});
-    title="Yönetici Mühendis"
+    users = await prisma.contents.findMany({ where:{AND:[{bigparent_slug:"yeniuye"}, {parent_slug:"engineer"}, {type:"userinfo"}]}});
+    title="Yönetici Mühendis";
+
+    if (loggedusertype!=="engineer" ) return <div style={{color:"white", padding:50}}>Yetkiniz olmayan alandasınız</div>
   }
 
 
