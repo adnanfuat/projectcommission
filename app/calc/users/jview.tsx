@@ -8,28 +8,21 @@ import s from "./jview.module.css"
 
 export const JVIEW = ({props}) => {
 
-    let {email,bigdata, loggedusertype} = props ?? {}  
-    // userdata=JSON.parse(userdata)
+    let {email,bigdata, loggedusertype} = props ?? {}      
     const Component = () => (<JsonViewer  displayDataTypes={false} displayObjectSize={false} value={bigdata ?? {}}/>)
-
-    
-    
+        
     const [relatedusertype, setrelatedusertype] = useState(bigdata?.usertype)
-
-
         
     const saveFunc = async () => {
                               let datajson = await fetch("/api/changeusertype", 
                               { method: 'POST', headers: { 'Content-Type' : 'application/json'},
                               body: JSON.stringify({email, usertype:relatedusertype})
                             })   
-
                                   //   let data =await datajson?.json()
                                   //   data= data?.userinfo;
                                   //   data={...data, bigdata:JSON.parse(data?.bigdata)}
                                   //   return data    
                                   // }
-
                             }
     
 
@@ -43,11 +36,11 @@ loggedusertype: {loggedusertype}
                                                         <option value={"standart"}>Standart</option>
                                                         }
 
-                                                        {(loggedusertype=="admin") &&
+                                                        {/* {(loggedusertype=="admin") &&
                                                           <option value={"verigirisi"}>Veri Girişi</option>
-                                                        }
+                                                        } */}
 
-                                                        {(loggedusertype=="admin-mimar" || loggedusertype=="admin-muhendis"  || loggedusertype=="admin" || loggedusertype=="tasnif" ) &&
+                                                        {(loggedusertype=="admin-mimar" || loggedusertype=="admin-muhendis"  || loggedusertype=="admin" ) &&
                                                           <option value={"kullanici"}>Kullanıcı</option>
                                                         }
                                                         {(loggedusertype=="admin") &&

@@ -1,18 +1,10 @@
 // "use client"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "../pages/api/auth/[...nextauth]"
-
-
-
 import Head from 'next/head'
-import Image from 'next/image'
-// import useSound from 'use-sound';
 import {SignIn, SignOut} from "@/src/components/loginactions"
-import Link from 'next/link'
 import s from  "./page.module.css"
 import { Denk_One } from '@next/font/google'
-// import { useState } from 'react';
-// import { useRouter } from "next/navigation";
 const denk = Denk_One({subsets:["latin"], weight:"400"})
 
 import { Inter } from '@next/font/google'
@@ -20,16 +12,8 @@ import { Inter } from '@next/font/google'
 const inter = Inter({ subsets: ['latin', "latin-ext"], weight:'900' })
 
 export default async function Home() {
-  // const router = useRouter();
-  
-  // const [playMorse] = useSound("/sounds/morse.mp3"); 
-  // const [playAchieve] = useSound("/sounds/achieve.mp3"); 
-  // const [user, setUser] = useState("")
-  // const [password, setPassword] = useState("")
   
   const session = await getServerSession(authOptions)
-
-  // console.log("sessionsession: ", session);
 
   return (
     <div className={inter.className}>
@@ -65,11 +49,6 @@ export default async function Home() {
                                                           
 
 
-                                                                      <div className={s.namewr}>                                                                                                                                        
-                                                                            <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
-                                                                            {session?.user?.name}
-                                                                      </div> 
-
 
                                                                       <div className={s.teklifwr}> 
                                                                           <a href={"/calc"}>Teklif</a>
@@ -79,7 +58,7 @@ export default async function Home() {
                                                                   
                                                             </div>}
                           
-                          {session ? <SignOut/> : <SignIn/>}
+                          {/* {session ? <SignOut/> : <SignIn/>} */}
                 </div>
 
 

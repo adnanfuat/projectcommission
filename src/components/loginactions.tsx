@@ -5,15 +5,15 @@ import { signIn, signOut } from "next-auth/react"
 export function SignOut() {
   return (
     <button className={s.login} onClick={() => signOut()}>
-      Sign out
+      Çıkış
     </button>
   )
 }
 
 export function SignIn() {
   return (
-    <button className={s.login} onClick={() => signIn("github")}>
-      Sign in
+    <button className={s.login} onClick={() => signIn()}>
+      Giriş
     </button>
   )
 }

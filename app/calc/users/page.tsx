@@ -9,8 +9,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 export default async function Users  (params) {
   
   let page = params?.searchParams?.page
-  console.log("paramssss:::--> ", page);
-  
+  // console.log("paramssss:::--> ", page);  
   // ?page=classification
   const session = await getServerSession(authOptions);
 

@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     
     
     related_userbigdata={...related_userbigdata, usertype:req?.body?.usertype}
-    console.log("dassadsadsa", related_userinfo)
+    // console.log("dassadsadsa", related_userinfo)
 
-    let update_related_userinfo = await prisma?.contents.update({where:{id:related_userinfo?.id}, data:{ bigparent_slug:req?.body?.email, bigdata:JSON.stringify(related_userbigdata)}})
+    let update_related_userinfo = await prisma?.contents.update({where:{id:related_userinfo?.id}, data:{ bigparent_slug:req?.body?.usertype, bigdata:JSON.stringify(related_userbigdata)}})
 
 
 
