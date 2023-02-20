@@ -1,4 +1,5 @@
 
+import { RiCalculatorFill } from "react-icons/ri";
 import { Inter } from '@next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 import  "@/styles/globals.css"
@@ -43,21 +44,26 @@ export default async function RootLayout({
 
                                     <div className={s.leftwr}>                                
                                           <div className={s.logowr}>
-                                          <Link href={"/"} title='Sakarya İnşaat Komisyonu'>
+                                          <Link href={"/"} title='PROJE KOMİSYONU'>
                                                 <img src='/images/logo.png' width={"auto"} height={"auto"}/>
                                           </Link>
 
                                           </div>                                         
-                                          <span>SAKARYA İNŞAAT KOMİSYONU</span>
+                                          <span>PROJE KOMİSYONU</span>
                                     </div>
 
 
 
 
                                         <div className={s.menu}>
-                                                                                                            
+
+
+                                                      {(loggedusertype=="admin" || loggedusertype=="kullanici" || loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar") && 
+                                                        <Link href={"/calc"} title="Tüm kullanıcılar"><RiCalculatorFill style={{color:"white", fontSize:25}}/> </Link>}                                                                                 
+
+
                                                       {(loggedusertype=="admin") && 
-                                                        <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:25}}/> <span>Tüm kullanıcılar</span></Link>}                                                                                 
+                                                        <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:25}}/></Link>}                                                                                 
                                                       {(loggedusertype=="admin-mimar") && 
                                                         <Link href={"/calc/users?page=architect"}  title="Yönetici - Mimar"><MdOutlineArchitecture style={{color:"white", fontSize:25}}/></Link>}                           
                                                       {(loggedusertype=="admin-muhendis" || 1==1) && 

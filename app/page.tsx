@@ -106,7 +106,7 @@ export default async function Home() {
 
 
 
-                { !session?.user?.email && <div style={{maxWidth:400, textAlign:"center"}}>  Sakarya İnşaat Komisyonu hesaplama sistemine hoş geldiniz. İşlemlere devam etmek için lütfen giriş yapınız.  </div> }
+                { !session?.user?.email && <div style={{maxWidth:450, minWidth:450, textAlign:"center"}}> <div> Sakarya Proje Komisyonu platformuna hoş geldiniz.</div> <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> </div> }
 
                 <div className={s.logowr}> <img src='/images/logolar_kucuk.png'/> </div>    
                                                    
