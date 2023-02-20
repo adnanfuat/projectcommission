@@ -19,7 +19,10 @@
 
   .namewr a {  
     color: white;
+    text-decoration: none;
   }
+
+
 
 
 .rightwr {
@@ -45,6 +48,11 @@
 
     .namewr a {
           font-size: 0.7rem;
+    }
+
+    .namewr span {
+      display: none;
+      background-color: blue;
     }
 
   }

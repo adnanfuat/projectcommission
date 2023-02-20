@@ -79,12 +79,10 @@ export default async function RootLayout({
 
                                               { session ? <SignOut/> : <SignIn/> }
                                               
-                                                        {session && <div className={s.namewr}>                                                                                                                                        
-                                                                              <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
-                                                                             <Link href={"/calc/profile"} title="Profil ayarlarına git">
-                                                                             { session?.user?.name }                                                                        
-                                                                             </Link> 
-                                                        </div> 
+                                                        {session && <Link href={"/calc/profile"} title="Profil ayarlarına git"><div className={s.namewr}>                                                                                                                                        
+                                                                              <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>                                                                             
+                                                                              <span>{ session?.user?.name } </span>                                                                             
+                                                        </div></Link>  
 
                                               }
 
