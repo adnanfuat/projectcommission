@@ -1,8 +1,7 @@
 // "use client"
-import { getServerSession } from "next-auth/next"
-import { authOptions } from "../pages/api/auth/[...nextauth]"
-import Head from 'next/head'
-import {SignIn, SignOut} from "@/src/components/loginactions"
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../pages/api/auth/[...nextauth]";
+import Head from 'next/head';
 import s from  "./page.module.css"
 import { Denk_One } from '@next/font/google';
 import prisma from "@/src/db/prismadb";
@@ -125,7 +124,7 @@ export default async function Home() {
                           {/* <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button> */}
                           {session &&  <div className={s.loggeddata}>                                                          
                                                                       <div className={s.teklifwr}> 
-                                                                          <a href={"/calc"}>Teklif</a>
+                                                                          <a href={"/calc"}>PROJE HİZMET BEDELİ HESAPLAMA</a>
                                                                       </div>
                                                             </div>}
                           

@@ -59,19 +59,19 @@ export default async function RootLayout({
 
 
                                                       {(loggedusertype=="admin" || loggedusertype=="kullanici" || loggedusertype=="admin-muhendis" || loggedusertype=="admin-mimar") && 
-                                                        <Link href={"/calc"} title="Proje hesaplama"><RiCalculatorFill style={{color:"white", fontSize:25}}/> </Link>}                                                                                 
+                                                        <Link href={"/calc"} title="Proje hesaplama"><RiCalculatorFill style={{color:"white", fontSize:42}}/> </Link>}                                                                                 
 
 
                                                       {(loggedusertype=="admin") && 
-                                                        <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:25}}/></Link>}                                                                                 
+                                                        <Link href={"/calc/users?page=admin"} title="Tüm kullanıcılar"><RiShieldUserFill style={{color:"white", fontSize:40}}/></Link>}                                                                                 
                                                       {(loggedusertype=="admin-mimar") && 
-                                                        <Link href={"/calc/users?page=architect"}  title="Yönetici - Mimar"><MdOutlineArchitecture style={{color:"white", fontSize:25}}/></Link>}                           
+                                                        <Link href={"/calc/users?page=architect"}  title="Yönetici - Mimar"><MdOutlineArchitecture style={{color:"white", fontSize:40}}/></Link>}                           
                                                       {(loggedusertype=="admin-muhendis") && 
-                                                        <Link href={"/calc/users?page=engineer"}  title="Yönetici - Mühendis"><FaBuilding style={{color:"white", fontSize:20}}/></Link>}                           
+                                                        <Link href={"/calc/users?page=engineer"}  title="Yönetici - Mühendis"><FaBuilding style={{color:"white", fontSize:30}}/></Link>}                           
                                                                           
-                                                      {(1==1) && 
+                                                      {/* {(1==1) && 
                                                         <Link href={"/calc/profile"} title="Profil"><RiUserFill style={{color:"white", fontSize:25}}/></Link>
-                                                      }
+                                                      } */}
                                         </div>
 
 
@@ -81,7 +81,7 @@ export default async function RootLayout({
                                               
                                                         {session && <div className={s.namewr}>                                                                                                                                        
                                                                               <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>
-                                                                             <Link href={"/calc/profile"}>
+                                                                             <Link href={"/calc/profile"} title="Profil ayarlarına git">
                                                                              { session?.user?.name }                                                                        
                                                                              </Link> 
                                                         </div> 
