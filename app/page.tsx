@@ -103,7 +103,7 @@ export default async function Home() {
                             </div>
                 }
 
-                                                               {(usertype=="yeniuye" ) &&                                                           
+                                                               {(session && usertype=="yeniuye") &&                                                           
                                                                       <div className={s.infowr}> 
                                                                                     YÖNETİCİ ONAYI BEKLEYİNİZ
                                                                       </div>
@@ -114,18 +114,7 @@ export default async function Home() {
                 <div className={s.logowr}> <img src='/images/logolar_kucuk.png'/> </div>    
                                                    
                 <div className={s.loginwr}>
-
                           
-                          {/* <div className={s.inputwr}>
-                                <span>Kullanıcı adı</span>
-                                 <input value={user} name="user" onChange={(e)=>setUser(e?.target?.value)}/> 
-                          </div>
-                          <div className={s.inputwr}>
-                                 <span>Şifre</span>
-                                 <input value={password} name="user" onChange={(e)=>setPassword(e?.target?.value)}/> 
-                          </div> */}
-                          {/* <button className={s.button} onClick={()=>signIn()}>GİRİŞ</button> */}
-                          {/* <button className={s.button} onClick={()=>router?.push("/calc")}>GİRİŞ</button> */}
                           {(session && usertype!=="yeniuye" ) &&  <div className={s.loggeddata}>                                                          
                                                                       <div className={s.teklifwr}> 
                                                                           <a href={"/calc"}>PROJE HİZMET BEDELİ HESAPLAMA</a>

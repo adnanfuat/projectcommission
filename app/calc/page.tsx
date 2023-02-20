@@ -11,12 +11,33 @@ import {yapisinifiFunc} from "@/src/json/yapisinifi"
 import { tasiyicisistemFunc} from "@/src/json/tasiyicisistem"
 import {projeUcretOraniFunc} from "@/src/json/projeucretorani"
 import Link from "next/link";
+import { useQuery } from "react-query";
 
 const inter = Inter({ subsets: ['latin', "latin-ext"] })
 
 export default function Home() {
 
       const componentRef = useRef();
+
+
+      const fetcher_userdata = async() => {
+    
+            let datajson=await fetch("/api/fetchuserdata", { method: 'POST', headers: { 'Content-Type' : 'application/json'}, })   
+              let data =await datajson?.json()
+              data= data?.userinfo;
+              data={...data, bigdata:JSON.parse(data?.bigdata)}
+              return data    
+          }
+          
+            const { isLoading, isError, isSuccess, error, data } = useQuery( ["userdata"], () => fetcher_userdata() );    
+
+            
+            let usertype = data?.bigdata?.usertype
+            
+            // console.log("datadatadata: ",usertype);
+
+
+
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -72,6 +93,8 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
     const [play] = useSound("/sounds/beep.mp3"); // hatanın çözümü    
 
 //     console.log("asdasdsasdasad", JSON.parse(yapisinifi)?.category);
+
+if (!(usertype=="admin" || usertype=="admin-muhendis" || usertype=="admin-mimar" || usertype=="kullanici")) return <div></div>
 
   return (    
             <form  onSubmit={formik.handleSubmit}  className={`${s.form} ${inter.className}`}> 
