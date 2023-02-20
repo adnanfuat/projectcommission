@@ -103,7 +103,11 @@ export default async function Home() {
                             </div>
                 }
 
-
+                                                               {(usertype=="yeniuye" ) &&                                                           
+                                                                      <div className={s.infowr}> 
+                                                                                    YÖNETİCİ ONAYI BEKLEYİNİZ
+                                                                      </div>
+                                                            }
 
                 { !session?.user?.email && <div style={{maxWidth:450, minWidth:450, textAlign:"center"}}> <div> Sakarya Proje Komisyonu platformuna hoş geldiniz.</div> <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> </div> }
 
