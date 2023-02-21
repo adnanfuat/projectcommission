@@ -108,7 +108,10 @@ export default async function Home() {
                                                                       </div>
                                                             }
 
-                { !session?.user?.email && <div style={{textAlign:"center", display:"flex", gap:11, flexDirection:"column"}}> 
+                { !session?.user?.email && <div style={{textAlign:"center", display:"flex", gap:11, flexDirection:"column", justifyContent:"center"}}> 
+                
+                     <div><img src={"/images/promidlanding.png"} width={150} height={178}/></div>
+
                             <h2> Proje Komisyonu Platformuna Hoş Geldiniz.</h2> 
                             <div>İşlemlere devam etmek için lütfen giriş yapınız. </div> 
                             <div>Giriş yapmak için Google Hesabınızı kullanabilirsiniz.</div> 
@@ -116,7 +119,7 @@ export default async function Home() {
                             
                             </div> }
 
-                <div className={s.logowr}> <img src='/images/logolar_kucuk.png'/> </div>    
+                <div className={s.logowr}> <img src='/images/logolar_kucuk.png' style={{maxHeight:100}}/> </div>    
                                                    
                 <div className={s.loginwr}>
                           
@@ -135,8 +138,9 @@ export default async function Home() {
 
                 <h2>BİZE ULAŞIN</h2>
 
-                Mimarlar: <a href="mailto:54.promim@gmail.com">54.promim@gmail.com</a>                
-                İnşaat Mühendisleri: <a href="mailto:bilgi@sakaryaprojekomisyonu.com">bilgi@sakaryaprojekomisyonu.com</a>
+                <div> Mimarlar: <a href="mailto:mimar@promid.org.tr">mimar@promid.org.tr</a> </div>
+                <div> İnşaat Mühendisleri: <a href="mailto:muhendis@promid.org.tr">muhendis@promid.org.tr</a> </div>
+
 
 
 

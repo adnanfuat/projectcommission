@@ -35,7 +35,7 @@ export default async function RootLayout({
   userinfo={...userinfo, bigdata, createdat:null, updatedat:null};
   let loggedusertype=bigdata?.usertype;
 
-   console.log("asdsadsadsdasda asdsdasdasdasad", userinfo);
+  //  console.log("asdsadsadsdasda asdsdasdasdasad", userinfo);
 
   return (
     <html className={inter.className}>      
@@ -43,13 +43,12 @@ export default async function RootLayout({
                               <div className={s.menuwr}>
 
                                     <div className={s.leftwr}>                                
+                                          <Link href={"/"} title='PROMİD'>
                                           <div className={s.logowr}>
-                                          <Link href={"/"} title='PROJE KOMİSYONU'>
                                                 <img src='/images/logo.png' width={"auto"} height={"auto"}/>
-                                          </Link>
-
                                           </div>                                         
-                                          <span>PROJE KOMİSYONU</span>
+                                          </Link>
+                                          <span>PROMİD</span>
                                     </div>
 
 

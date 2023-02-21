@@ -43,14 +43,21 @@
 
 
   .logowr {
-    max-width: 70px;
-    max-height: 70px;
+    max-width: 48px;
+    max-height: 48px;
     border-radius: 8px;
     overflow: hidden;
     background-color: white;
     padding: 2px 10px;
+    display: flex;
+    align-items: center;
+    padding: 6px;
+    transition: all 0.2s;
   }
 
+  .logowr:hover {
+    transform: scale(1.1);
+  }
 
   .menu {
     grid-area: menu;
@@ -86,12 +93,12 @@
     }
 
     .namewr a {
-          font-size: 0.7rem;
+          font-size: 0.8rem;
     }
 
     .namewr span {
       display: none;
-      background-color: blue;
+    
     }
 
 
