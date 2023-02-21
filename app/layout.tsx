@@ -35,7 +35,7 @@ export default async function RootLayout({
   userinfo={...userinfo, bigdata, createdat:null, updatedat:null};
   let loggedusertype=bigdata?.usertype;
 
-   //console.log("asdsadsadsdasda asdsdasdasdasad", userinfo);
+   console.log("asdsadsadsdasda asdsdasdasdasad", userinfo);
 
   return (
     <html className={inter.className}>      
@@ -81,7 +81,7 @@ export default async function RootLayout({
                                               
                                                         {session && <Link href={"/calc/profile"} title="Profil ayarlarına git"><div className={s.namewr}>                                                                                                                                        
                                                                               <div className={s.avatarwr}> <img src={session?.user?.image} width={40} height={40}/> </div>                                                                             
-                                                                              <span>{ session?.user?.name } </span>                                                                             
+                                                                              <span>{ bigdata?.name } </span>                                                                             
                                                         </div></Link>  
 
                                               }
