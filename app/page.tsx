@@ -138,8 +138,14 @@ export default async function Home() {
 
                 <h2>BİZE ULAŞIN</h2>
 
-                <div> Mimarlar: <a href="mailto:mimar@promid.org.tr">mimar@promid.org.tr</a> </div>
-                <div> İnşaat Mühendisleri: <a href="mailto:muhendis@promid.org.tr">muhendis@promid.org.tr</a> </div>
+                <div className={s.mailwr}>
+                            <div> Mimarlar </div>       <div>:</div>   <div><a href="mailto:mimar@promid.org.tr">mimar@promid.org.tr</a> </div>
+                            <div> İnşaat Mühendisleri </div> <div>:</div><div><a href="mailto:muhendis@promid.org.tr">muhendis@promid.org.tr</a> </div>
+
+                </div>    
+
+                
+                
 
 
 

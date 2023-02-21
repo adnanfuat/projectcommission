@@ -213,3 +213,10 @@ border-radius: 10px;
     font-weight: 300;
   }
 }
+
+
+.mailwr {
+  display: grid;
+  gap:10px;
+  grid-template-columns:  max-content max-content 1fr;
+}
