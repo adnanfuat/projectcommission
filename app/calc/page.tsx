@@ -94,6 +94,7 @@ let sum = toplaminsaatalani*JSON.parse(yapisinifi)?.price*JSON.parse(tasiyicisis
 
 //     console.log("asdasdsasdasad", JSON.parse(yapisinifi)?.category);
 
+if (!(data)) return <div></div>
 if (!(usertype=="admin" || usertype=="admin-muhendis" || usertype=="admin-mimar" || usertype=="kullanici")) return <div style={{color:"white", padding:50, backgroundColor:"black"}}>Yetkiniz olmayan alandasınız</div>
 
   return (    

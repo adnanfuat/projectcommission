@@ -1,4 +1,5 @@
 "use client"
+import { useState } from 'react'
 import s from "./page.module.css";
 import { useFormik } from 'formik';
 import { useQuery } from "react-query";
@@ -15,6 +16,9 @@ const fetcher_userdata = async() => {
     data={...data, bigdata:JSON.parse(data?.bigdata)}
     return data    
 }
+
+
+const [saved, setsaved] = useState(false)
 
   const { isLoading, isError, isSuccess, error, data } = useQuery( ["userdata"], () => fetcher_userdata() );    
   //  console.log("mimmmmmmmmmmmmmmmm", data);mimmmmmmmmmmmmmmmm
@@ -33,6 +37,10 @@ const fetcher_userdata = async() => {
                   body: JSON.stringify(values)
                 }).then(item=>{
                   setSubmitting(false);
+                  setsaved(true);
+                  setTimeout(() => {
+                    setsaved(false);
+                  }, 3000);
                 })                              
     },
   });   
@@ -73,6 +81,8 @@ const fetcher_userdata = async() => {
                   </div>
 
                   <button type="button" disabled={formik?.isSubmitting} onClick={()=>formik?.handleSubmit()} className={s.button}>Kaydet</button>
+
+                  <div>{(saved) && "Kaydedildi"}</div>
           
     </form>
   );
