@@ -19,12 +19,13 @@ export default async function handler(req, res) {
     
     let new_userbigdata = req?.body ?? {};
 
-    // console.log("new_userbigdatanew_userbigdata: ", new_userbigdata);
+
+     console.log("new_userbigdatanew_userbigdata: ", new_userbigdata);
 
     
     new_userbigdata={...userbigdata, ...new_userbigdata}
 
-    let updated_userinfo = await prisma?.contents.update({where:{id:userinfo?.id}, data:{...userinfo, parent_slug:new_userbigdata?.jobtype, bigdata:JSON.stringify(new_userbigdata)}})
+    let updated_userinfo = await prisma?.contents.update({where:{id:userinfo?.id}, data:{...userinfo, title_tr:new_userbigdata?.name , parent_slug:new_userbigdata?.jobtype, bigdata:JSON.stringify(new_userbigdata)}})
 
     //console.log("asdasas:::",   updated_userinfo);
 

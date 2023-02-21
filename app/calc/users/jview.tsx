@@ -1,7 +1,7 @@
 
 "use client"
 
-import { JsonViewer, createDataType } from '@textea/json-viewer'
+import { JsonViewer } from '@textea/json-viewer'
 import { useState } from 'react'
 import s from "./jview.module.css"
 
