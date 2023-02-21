@@ -23,14 +23,16 @@ const fetcher_userdata = async() => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: data?.bigdata,
-    onSubmit: (values, {setSubmitting}) => {
-
+    onSubmit: (values, {setSubmitting}) => {      
+        setSubmitting(true);
                 fetch("/api/updateuser", {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify(values)
+                }).then(item=>{
+                  setSubmitting(false);
                 })                              
     },
   });   
@@ -70,7 +72,7 @@ const fetcher_userdata = async() => {
                     </div>
                   </div>
 
-                  <button type="button" onClick={()=>formik?.handleSubmit()} className={s.button}>Kaydet</button>
+                  <button type="button" disabled={formik?.isSubmitting} onClick={()=>formik?.handleSubmit()} className={s.button}>Kaydet</button>
           
     </form>
   );

@@ -12,12 +12,18 @@ export const JVIEW = ({props}) => {
     const Component = () => (<JsonViewer  displayDataTypes={false} displayObjectSize={false} value={bigdata ?? {}}/>)
         
     const [relatedusertype, setrelatedusertype] = useState(bigdata?.usertype)
-        
+    
+    const [submitting, setsubmitting] = useState(false)
+
     const saveFunc = async () => {
+      
+      
+                              setsubmitting(true);
+
                               let datajson = await fetch("/api/changeusertype", 
                               { method: 'POST', headers: { 'Content-Type' : 'application/json'},
                               body: JSON.stringify({email, usertype:relatedusertype})
-                            })   
+                            }).then(item=> { setsubmitting(false)})   
                                   //   let data =await datajson?.json()
                                   //   data= data?.userinfo;
                                   //   data={...data, bigdata:JSON.parse(data?.bigdata)}
@@ -53,7 +59,7 @@ export const JVIEW = ({props}) => {
                                         </select>
                     </div>
                     
-                    <button className={s.button} onClick={()=>{saveFunc()}}>Kaydet</button>
+                    <button className={s.button} onClick={()=>{saveFunc()}} disabled={submitting}>Kaydet</button>
 
         {componentOpen && <Component />}
       </div>
