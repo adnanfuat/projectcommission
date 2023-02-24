@@ -1,6 +1,6 @@
 
 "use client"
-
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import { JsonViewer } from '@textea/json-viewer'
 import { useState } from 'react'
 import s from "./jview.module.css"
@@ -9,6 +9,7 @@ import s from "./jview.module.css"
 export const JVIEW = ({props}) => {
 
     let {email,bigdata, loggedusertype} = props ?? {}      
+    
     const Component = () => (<JsonViewer  displayDataTypes={false} displayObjectSize={false} value={bigdata ?? {}}/>)
         
     const [relatedusertype, setrelatedusertype] = useState(bigdata?.usertype)
@@ -16,31 +17,32 @@ export const JVIEW = ({props}) => {
     const [submitting, setsubmitting] = useState(false);
 
     const [saved, setsaved] = useState(false)
+    const [deleted, setdeleted] = useState(false)
 
-    const saveFunc = async () => {
-      
-      
-                              setsubmitting(true);
+    const saveFunc = async () => {          
+                                    setsubmitting(true);
 
-                              let datajson = await fetch("/api/changeusertype", 
-                              { method: 'POST', headers: { 'Content-Type' : 'application/json'},
-                              body: JSON.stringify({email, usertype:relatedusertype})
-                            }).then(item=> { 
-                              
-                              setsubmitting(false);
-
-                              setsaved(true);
-                              setTimeout(() => {
-                                setsaved(false);
-                              }, 3000);
-                            
-                            })   
-                                  //   let data =await datajson?.json()
-                                  //   data= data?.userinfo;
-                                  //   data={...data, bigdata:JSON.parse(data?.bigdata)}
-                                  //   return data    
-                                  // }
+                                    let datajson = await fetch("/api/changeusertype", 
+                                    { method: 'POST', headers: { 'Content-Type' : 'application/json'},
+                                    body: JSON.stringify({email, usertype:relatedusertype})
+                                  }).then(item=> {                                     
+                                    setsubmitting(false);
+                                    setsaved(true);
+                                    setTimeout(() => { setsaved(false); }, 3000);                                  
+                                  })                                     
                             }
+
+
+const deleteFunc = async () => {          
+                              
+
+                              let datajson = await fetch("/api/deleteuser", 
+                              { method: 'POST', headers: { 'Content-Type' : 'application/json'},
+                              body: JSON.stringify({email})
+                            }).then(item=> {                                                                   
+                              setdeleted(true);                                               
+                            })                                     
+                      }                            
     
 
                             const [componentOpen, setcomponentOpen] = useState(false)
@@ -58,20 +60,22 @@ export const JVIEW = ({props}) => {
                                                           <option value={"kullanici"}>Kullanıcı</option>
                                                         }
                                                         
-                                                        {( loggedusertype=="admin") &&
+                                                        {( loggedusertype=="admin" || loggedusertype=="admin-mimar") &&
                                                           <option value={"admin-mimar"}>Yönetici - Mimar</option>
                                                           }
-                                                        {( loggedusertype=="admin") &&
+                                                        {( loggedusertype=="admin" || loggedusertype=="admin-muhendis") &&
                                                           <option value={"admin-muhendis"}>Yönetici - Mühendis</option>
                                                           }
-                                                        {(loggedusertype=="admin") &&
+                                                        {(loggedusertype=="admin"  || loggedusertype=="admin-mimar"  || loggedusertype=="admin-muhendis" ) &&
                                                           <option value={"admin"}>Tam Yetkili Yönetici</option>
                                                         }
                                         </select>
                     </div>
                     
-                    <button className={s.button} onClick={()=>{saveFunc()}} disabled={submitting}>Kaydet</button>
+                    {!deleted && <button className={s.button} onClick={()=>{saveFunc()}} disabled={submitting || (relatedusertype=="admin" && loggedusertype!="admin")}>Kaydet</button>}
+                    {(loggedusertype=="admin" && !deleted) &&<div onClick={()=>deleteFunc()}><RiDeleteBin2Fill size={26} color="#d50707"/></div>}
                     <div>{(saved) && "Kaydedildi"}</div>
+                    
 
         {componentOpen && <Component />}
       </div>
