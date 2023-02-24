@@ -77,7 +77,7 @@ export default async function Users  (params) {
     
     
             <div className={s.shell}>         
-                          <h2>{title}</h2>         
+                          <h2>{title} - {users?.length}</h2>         
                           {users?.length>0 && <div className={s.users}>
                                     { users?.map((user, index)=>{ 
 
