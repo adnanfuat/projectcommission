@@ -72,7 +72,7 @@ const deleteFunc = async () => {
                                         </select>
                     </div>
                     
-                    {!deleted && <button className={s.button} onClick={()=>{saveFunc()}} disabled={submitting || (relatedusertype=="admin" && loggedusertype!="admin")}>Kaydet</button>}
+                    {!deleted && <button className={s.button} onClick={()=>{saveFunc()}} disabled={submitting || (relatedusertype=="admin" && loggedusertype!="admin") || (relatedusertype=="admin-muhendis" && loggedusertype!="admin")  || (relatedusertype=="admin-mimar" && loggedusertype!="admin")  }>Kaydet</button>}
                     {(loggedusertype=="admin" && !deleted) &&<div onClick={()=>deleteFunc()}><RiDeleteBin2Fill size={26} color="#d50707"/></div>}
                     <div>{(saved) && "Kaydedildi"}</div>
                     
