@@ -40,7 +40,7 @@ const [saved, setsaved] = useState(false)
                   setsaved(true);
                   setTimeout(() => {
                     setsaved(false);
-                  }, 3000);
+                  }, 1000);
                 })                              
     },
   });   

@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
     let usertype=userbigdata?.usertype;
 
-    if (!(usertype=="admin" || usertype=="tasnif"))  // Tasnifçi ve admin dışından gelenleri reddet
+    if (!(usertype=="admin" || usertype=="admin-mimar" || usertype=="admin-muhendis" || usertype=="tasnif"))  // Tasnifçi ve admin dışından gelenleri reddet
     {
       console.log("Erişim reddedildi")
       res.status(500).json({ output: 'Erişim reddedildi' })
