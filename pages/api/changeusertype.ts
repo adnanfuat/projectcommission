@@ -18,8 +18,8 @@ export default async function handler(req, res) {
 
     if (!(usertype=="admin" || usertype=="admin-mimar" || usertype=="admin-muhendis" || usertype=="tasnif"))  // Tasnifçi ve admin dışından gelenleri reddet
     {
-      console.log("Erişim reddedildi")
-      res.status(500).json({ output: 'Erişim reddedildi' })
+      console.log("Erişim reddedildi",usertype)
+      res.status(500).json({ output: 'Erişim reddedildi',usertype })
     }
     
 
