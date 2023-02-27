@@ -1,5 +1,6 @@
 // "use client"
 import { getServerSession } from "next-auth/next";
+import { redirect } from 'next/navigation';
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 import Head from 'next/head';
 import s from  "./page.module.css"
@@ -29,7 +30,7 @@ export default async function Home() {
        let jobtype=bigdata?.jobtype;
        let code=bigdata?.code;
 
-       
+       jobtype!="engineer" && jobtype!="architect" ? redirect('/calc/profile') : ""     
        let usertypeText="";
 
        switch (usertype) {
@@ -69,6 +70,7 @@ export default async function Home() {
                      break;
        }
 
+       
 
   return (
     <div className={inter.className}>

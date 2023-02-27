@@ -28,8 +28,8 @@ export const authOptions: NextAuthOptions =
                                 
   
                                  return Promise.resolve(session);
-  
-                                             }     
+    
+                                             }                                               
   },
   
   events:{
