@@ -53,7 +53,7 @@ const [saved, setsaved] = useState(false)
   // console.log("asdsadsaasdasd", formik?.values)
 
   if (!data) {
-    return <div style={{color:"white", padding:50, backgroundColor:"black"}}>Yetkiniz olmayan alandasınız</div>
+    return <div style={{color:"white", padding:50, backgroundColor:"black"}}>Yükleniyor...</div>
   }
 
   return (

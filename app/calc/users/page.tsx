@@ -4,6 +4,7 @@ import {JVIEW} from "./jview";
 
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
+import { redirect } from 'next/navigation';
 
 
 export default async function Users  (params) {
@@ -12,17 +13,17 @@ export default async function Users  (params) {
   // console.log("paramssss:::--> ", page);  
   // ?page=classification
   const session = await getServerSession(authOptions);
-
+  session==null ? redirect('/') : ""
   let user= session?.user;
 
-  
+    
   const userinfo = await prisma.contents.findFirst({where:{AND:[{type:"userinfo"}, {slug_tr:user?.email}]} });
   let bigdata=userinfo?.bigdata;
   bigdata=JSON.parse(bigdata);
 
   let loggedusertype=bigdata?.usertype;
   
-  // console.log("session:::::", loggedusertype)
+  console.log("session:::::", loggedusertype,session)
 
   let  users=[]
   
